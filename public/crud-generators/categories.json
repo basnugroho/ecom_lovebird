@@ -1,0 +1,21 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "user",
+            "type": "belongsTo",
+            "class": "App\\Product"
+        }
+    ],
+    "validations": [
+        {
+            "field": "name",
+            "rules": "required"
+        }
+    ]
+}

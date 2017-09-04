@@ -1,0 +1,66 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "image",
+            "type": "string"
+        },
+        {
+            "name": "price",
+            "type": "bigint"
+        },
+        {
+            "name": "category_id",
+            "type": "integer#unsigned"
+        },
+        {
+            "name": "decription",
+            "type": "text"
+        },
+        {
+            "name": "category_id",
+            "type": "select",
+            "options": ["silahkan pilih"]
+        }
+    ],
+    "foreign_keys": [
+        {
+            "column": "category_id",
+            "references": "id",
+            "on": "categories",
+            "onUpdate": "cascade"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "category",
+            "type": "hasOne",
+            "class": "App\\Category"
+        }
+    ],
+    "validations": [
+        {
+            "field": "name",
+            "rules": "required"
+        },
+        {
+            "field": "image",
+            "rules": "required"
+        },
+        {
+            "field": "price",
+            "rules": "required"
+        },
+        {
+            "field": "category_id",
+            "rules": "required"
+        },
+        {
+            "field": "description",
+            "rules": "required"
+        }
+    ]
+}
