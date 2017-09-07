@@ -45,7 +45,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="firstname">Firstname</label>
-                                        <input type="text" class="form-control" id="firstname">
+                                        <input type="text" class="form-control" id="firstname" value="{{ $user->name }}">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -61,13 +61,15 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input type="text" class="form-control" id="email" value="">
+                                        <input type="text" class="form-control" id="email" value="{{ $user->email }}">
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-3">
                                     <div class="form-group">
                                         <label for="country">Negara</label>
-                                        <select class="form-control" id="country"></select>
+                                        <select class="form-control" id="country">
+                                            <option value="1">Indonesia</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-3">
@@ -86,8 +88,8 @@
                                 <div class="col-sm-6 col-md-3">
                                     <div class="form-group">
                                         <label for="city">Kota</label>
-                                        <select class="form-control" id="city">
-                                            <option value="">Silahkan Pilih</option>
+                                        <select class="form-control" id="city" name="city">
+                                            <option>Silahkan Pilih</option>
                                         </select>
                                     </div>
                                 </div>
@@ -109,10 +111,24 @@
                                         <input type="text" class="form-control" id="phone">
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 col-md-3">
                                     <div class="form-group">
                                         <label for="delivery">Pengiriman</label>
-                                        <input type="delivery" class="form-control" id="delivery" value="{{ $delivery }}" disabled>
+                                        <select class="form-control" id="courier" name="courier">
+                                            <option value="">Silahkan Pilih</option>
+                                            <option {{ $delivery == "jne" ? 'selected' : '' }} value="jne">JNE</option>
+                                            <option {{ $delivery == "tiki" ? 'selected' : '' }} value="tiki">TIKI</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="form-group">
+                                        <label for="delivery">Layanan</label>
+                                        <select class="form-control" id="courier" name="courier">
+                                            <option value="">Silahkan Pilih</option>
+                                            <option {{ $delivery == "jne" ? 'selected' : '' }} value="jne">JNE</option>
+                                            <option {{ $delivery == "tiki" ? 'selected' : '' }} value="tiki">TIKI</option>
+                                        </select>
                                     </div>
                                 </div>
                                 

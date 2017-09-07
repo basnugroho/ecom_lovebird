@@ -581,9 +581,7 @@ _________________________________________________________ -->
             toastr.info('{{ Session::get('info') }}')
         @endif
 
-        @if(Session::has('data'))
-            toastr.success('{{ Session::get('data') }}')
-        @endif
+
     </script>
     @yield('scripts')
 
