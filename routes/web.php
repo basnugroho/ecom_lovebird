@@ -107,6 +107,7 @@ Route::get('/customer/orders', [
     'as' => 'customer.orders'
 ]);
 
+
 Route::get('/provinces', [
     'uses' => 'OngkirsController@get_provinces',
     'as' => 'ongkir.provinces'
@@ -115,6 +116,10 @@ Route::get('/provinces', [
 Route::get('/cities', [
     'uses' => 'OngkirsController@get_cities',
     'as' => 'ongkir.cities'
+]);
+Route::get('/services', [
+    'uses' => 'OngkirsController@get_services',
+    'as' => 'ongkir.services'
 ]);
 
 

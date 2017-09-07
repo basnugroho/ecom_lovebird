@@ -89,7 +89,7 @@
                                     <div class="form-group">
                                         <label for="city">Kota</label>
                                         <select class="form-control" id="city" name="city">
-                                            <option>Silahkan Pilih</option>
+                                            <option>Silahkan Pilih Provinsi Duhulu</option>
                                         </select>
                                     </div>
                                 </div>
@@ -119,15 +119,14 @@
                                             <option {{ $delivery == "jne" ? 'selected' : '' }} value="jne">JNE</option>
                                             <option {{ $delivery == "tiki" ? 'selected' : '' }} value="tiki">TIKI</option>
                                         </select>
+    
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-3">
-                                    <div class="form-group">
+                                    <div class="form-group layanan">
                                         <label for="delivery">Layanan</label>
-                                        <select class="form-control" id="courier" name="courier">
-                                            <option value="">Silahkan Pilih</option>
-                                            <option {{ $delivery == "jne" ? 'selected' : '' }} value="jne">JNE</option>
-                                            <option {{ $delivery == "tiki" ? 'selected' : '' }} value="tiki">TIKI</option>
+                                        <select class="form-control" id="service" name="service">
+                                            <option>Silahkan Pilih</option>
                                         </select>
                                     </div>
                                 </div>
@@ -221,15 +220,17 @@
             }
         });
 
-        var prov_id = $('#state').val();
+        
         //get cities
+        var prov_id = $('#state').val();
         $('#state').change(function () {
             prov_id = $('#state').val();
 
+            //remove city options
             $('#city option').each(function() {
                 $(this).remove();
             });
-            //console.log(prov_id);
+
 
             $.ajax({
                 url: "{{ route('ongkir.cities') }}",
@@ -240,9 +241,7 @@
                     //console.log(json['rajaongkir']['results'])
                     var cities = json["rajaongkir"]["results"];
                     var i = 0;
-                    while(i < cities.length) {
-                        //console.log(cities[i]['city_id'] +" "+cities[i]['type']+" "+cities[i]['city_name']);
-                        
+                    while(i < cities.length) {   
                         $('#city').append('<option value="'+ cities[i]['city_id']  +'">'+cities[i]['type']+" "+cities[i]['city_name'] +'</option>');
                         i++;
                     }
@@ -251,7 +250,13 @@
         });
 
         //get zip
+        var city_id = $('#city').val();
         $('#city').change(function () {
+
+            // //remove service
+            // $('#service option').each(function() {
+            //     $(this).remove();
+            // });
 
             prov_id = $('#state').val();
             city_id = $('#city').val();
@@ -267,7 +272,43 @@
                     $('#zip').val(zip)
                 }
             });
-        })
+
+            //get services
+            $.ajax({
+                url: "{{ route('ongkir.services') }}",
+                type:'get',
+                data: { courier: "jne", destination: city_id },
+                success: function(data, city_id) {
+                    var json = JSON.parse(data);
+                    var services = json["rajaongkir"]["results"][0]['costs'];             
+                    //console.log(services)
+                    var a = 0;
+                    while(a < services.length) {
+                         $('#service').append('<option value="'+ a +'">'+ services[a]['description'] +" ("+ services[a]['cost'][0]['etd'] +' hari)</option>');
+                         a++;
+                    }
+                }
+            });
+
+        });
+
+        //get cost
+        $('#service').change(function () {
+            $("#cost").remove()
+            var serv_id = $('#service').val();
+            $.ajax({
+                url: "{{ route('ongkir.services') }}",
+                type:'get',
+                data: { courier: "jne", destination: city_id },
+                success: function(data, city_id) {
+                    var json = JSON.parse(data);
+                    console.log(data);
+                    var cost = json["rajaongkir"]["results"][0]['costs'][0]['cost'][serv_id]['value'];             
+                    console.log(cost);
+                    //$('.layanan').append('<input type="text" name="cost" value="'+ cost +'">')
+                }
+            });
+        });
 
 
     });
