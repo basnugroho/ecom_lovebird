@@ -69,8 +69,8 @@ _________________________________________________________ -->
                             </div>
                             @if (Auth::guest())
                             <div class="login">
-                                <a href="{{ route('login')}}" ><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Masuk</span></a>
-                                <a href=""><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">Daftar</span></a>
+                                <a href="{{ route('customer.login') }}" ><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Masuk</span></a>
+                                <a href="{{ route('customer.register') }}"><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">Daftar</span></a>
                             </div>
                             @endif
                         </div>
@@ -116,18 +116,30 @@ _________________________________________________________ -->
                                 <li onclick="location.href='{{ route('about') }}';" class="dropdown {{ $currentRoute == 'about' ? 'active' : ''}}">
                                 <a href="{{ route('about') }}" class="dropdown-toggle" data-toggle="dropdown">About</a>
                                 </li>
+                                @if(Auth::check())
                                 <li class="dropdown {{ $currentRoute == 'account' ? 'active' : ''}}">
                                 <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ route('account') }}">profile</a>
                                         </li>
-                                        <li><a href="">Orders</a>
+                                        <li>
+                                            <a href="{{ route('customer.orders') }}">
+                                            Orders
+                                            </a>
                                         </li>
-                                        <li><a href="contact3.html">Logout</a>
+                                        <li>
+                                            <a href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                                Logout
+                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
                                         </li>
-
                                     </ul>
                                 </li>
+                                @endif
                                 <li onclick="location.href='{{ route('cart') }}';" class="dropdown {{ $currentRoute == 'cart' ? 'active' : ''}}">
                                 <a href="{{ route('cart') }}" class="dropdown-toggle" data-toggle="dropdown">Cart <span class="badge">{{ Cart::count() }}</span></a>
                                 </li>
@@ -266,7 +278,7 @@ _________________________________________________________ -->
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- /.yamm-content -->
+                                            <!- /.yamm-content -->
                                         </li>
                                     </ul>
                                 </li>
@@ -416,7 +428,7 @@ _________________________________________________________ -->
                         <div class="item same-height-row clearfix">
                             <div class="image same-height-always">
                                 <a href="#">
-                                    <img class="img-responsive" src="img/detailsquare.jpg" alt="">
+                                    <img class="img-responsive" src="{{ asset('universal/img/detailsquare.jpg') }}" alt="">
                                 </a>
                             </div>
                             <div class="name same-height-always">
@@ -427,7 +439,7 @@ _________________________________________________________ -->
                         <div class="item same-height-row clearfix">
                             <div class="image same-height-always">
                                 <a href="#">
-                                    <img class="img-responsive" src="img/detailsquare.jpg" alt="">
+                                    <img class="img-responsive" src="{{ asset('universal/img/detailsquare.jpg') }}" alt="">
                                 </a>
                             </div>
                             <div class="name same-height-always">
@@ -438,7 +450,7 @@ _________________________________________________________ -->
                         <div class="item same-height-row clearfix">
                             <div class="image same-height-always">
                                 <a href="#">
-                                    <img class="img-responsive" src="img/detailsquare.jpg" alt="">
+                                    <img class="img-responsive" src="{{ asset('universal/img/detailsquare.jpg') }}" alt="">
                                 </a>
                             </div>
                             <div class="name same-height-always">
@@ -549,15 +561,15 @@ _________________________________________________________ -->
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script>
-        window.jQuery || document.write('<script src="{{ asset('js/jquery-1.11.0.min.js') }}"><\/script>')
+        window.jQuery || document.write('<script src="{{ asset('universal/js/jquery-1.11.0.min.js') }}"><\/script>')
     </script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-    <script src="{{ asset('js/jquery.cookie.js') }}"></script>
-    <script src="{{ asset('js/waypoints.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.counterup.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.parallax-1.1.3.js') }}"></script>
-    <script src="{{ asset('js/front.js') }}"></script>
+    <script src="{{ asset('universal/js/jquery.cookie.js') }}"></script>
+    <script src="{{ asset('universal/js/waypoints.min.js') }}"></script>
+    <script src="{{ asset('universal/js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset('universal/js/jquery.parallax-1.1.3.js') }}"></script>
+    <script src="{{ asset('universal/js/front.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.js"></script>
     <script>
@@ -567,6 +579,10 @@ _________________________________________________________ -->
 
         @if(Session::has('info'))
             toastr.info('{{ Session::get('info') }}')
+        @endif
+
+        @if(Session::has('data'))
+            toastr.success('{{ Session::get('data') }}')
         @endif
     </script>
     @yield('scripts')

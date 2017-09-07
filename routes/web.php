@@ -1,5 +1,6 @@
 <?php
 
+//use Session;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +11,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/', [
     'uses' => 'FrontEndController@index',
@@ -36,6 +38,25 @@ Route::get('/cart/delete', [
     'as' => 'cart.delete'
 ]);
 
+
+Route::get('/checkout/delivery', [
+    'uses' => 'CheckoutController@checkoutDelivery',
+    'as' => 'checkout.delivery'
+]);
+Route::post('/checkout/address', [
+    'uses' => 'CheckoutController@checkoutAddress',
+    'as' => 'checkout.address'
+]);
+Route::post('/checkout/payment', [
+    'uses' => 'CheckoutController@checkoutPayment',
+    'as' => 'checkout.payment'
+]);
+Route::post('/checkout/review', [
+    'uses' => 'CheckoutController@checkoutReview',
+    'as' => 'checkout.review'
+]);
+
+
 Route::get('/category/{c_id}/product/{p_id}', [
     'uses' => 'FrontEndController@detail',
     'as' => 'front.detail'
@@ -59,9 +80,41 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/admin', function () {
+    return view('auth.login');
+});
 Route::get('/admin/profile', [
     'uses' => 'Admin\\AdminController@profile',
     'as' => 'admin.profile'
 ]);
 Route::resource('admin/categories', 'Admin\\CategoriesController');
 Route::resource('admin/products', 'Admin\\ProductsController');
+
+Route::get('/customer/login', [
+    'uses' => 'UsersController@login',
+    'as' => 'customer.login'
+]);
+Route::get('/customer/register', [
+    'uses' => 'UsersController@register',
+    'as' => 'customer.register'
+]);
+Route::get('/customer/reset', [
+    'uses' => 'UsersController@reset',
+    'as' => 'customer.password.request'
+]);
+Route::get('/customer/orders', [
+    'uses' => 'UsersController@orders',
+    'as' => 'customer.orders'
+]);
+
+Route::get('/provinces', [
+    'uses' => 'OngkirsController@get_provinces',
+    'as' => 'ongkir.provinces'
+]);
+
+Route::get('/cities', [
+    'uses' => 'OngkirsController@get_cities',
+    'as' => 'ongkir.cities'
+]);
+
+

@@ -23,7 +23,6 @@ class ShoppingController extends Controller
             'name' => $product->name,
             'price' => $product->price,
             'qty' => 1,
-
         ]);
         Cart::associate($cartItem->rowId, 'App\Product');
         Session::flash('success', 'produk telah ditambahkan dalam cart');

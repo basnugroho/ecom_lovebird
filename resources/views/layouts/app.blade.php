@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.css">
 </head>
 <body>
     <div id="app">
@@ -58,7 +59,6 @@
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
-
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
@@ -76,16 +76,15 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.js"></script>
     <script>
-        // @if(Session::has('flash_message'))
-        //     // toastr.success('
-        //     {{ Session::get('flash_message') }}
-        //     // ')
-        // @endif
+        @if(Session::has('flash_message'))
+            toastr.success('{{ Session::get('flash_message') }}')
+        @endif
 
-        // @if(Session::has('info'))
-        //     toastr.info('{{ Session::get('info') }}')
-        // @endif
+        @if(Session::has('info'))
+            toastr.info('{{ Session::get('info') }}')
+        @endif
     </script>
 </body>
 </html>

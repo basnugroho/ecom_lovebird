@@ -49,7 +49,7 @@
                                     <tr>
                                         <td>
                                             <a href="#">
-                                                <img src="{{ asset('$product->image') }}" alt="White Blouse Armani">
+                                                <img src="{{ asset($product->model->image) }}" alt="{{ $product->rowId }}">
                                             </a>
                                         </td>
                                         <td>
@@ -85,8 +85,7 @@
                             <div class="pull-right">
                                 <button type="submit" class="btn btn-default"><i class="fa fa-refresh"></i> Update cart</button>
                                 </form>
-                                <button  class="btn btn-template-main">Proceed to checkout <i class="fa fa-chevron-right"></i>
-                                </button>
+                                <a href="{{ route('checkout.delivery') }}" class="btn btn-template-main">Proceed to checkout <i class="fa fa-chevron-right"></i></a>
                             </div>
                         </div>
                     
@@ -164,19 +163,19 @@
                             <tbody>
                                 <tr>
                                     <td>Order subtotal</td>
-                                    <th>$446.00</th>
+                                    <th>{{ Cart::total() }}</th>
                                 </tr>
                                 <tr>
                                     <td>Shipping and handling</td>
-                                    <th>$10.00</th>
+                                    <th>0</th>
                                 </tr>
                                 <tr>
                                     <td>Tax</td>
-                                    <th>$0.00</th>
+                                    <th>0</th>
                                 </tr>
                                 <tr class="total">
                                     <td>Total</td>
-                                    <th>$456.00</th>
+                                    <th>{{ Cart::total() }}</th>
                                 </tr>
                             </tbody>
                         </table>

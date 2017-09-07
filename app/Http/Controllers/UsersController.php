@@ -4,21 +4,43 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Auth;
+
 
 class UsersController extends Controller
 {
     public function account () {
+        $user = Auth::user();
+        //dd($user->admin);
         $currentRoute = Route::currentRouteName();
-        return view('account')->with('currentRoute', $currentRoute);
+        if($user->admin != 1) {
+            return view('customers.account')->with('currentRoute', $currentRoute);
+        }
+        return view('admin.dashboard');
+    }
+
+    public function login() {
+        $currentRoute = Route::currentRouteName();
+        return view('logins.login')->with('currentRoute', $currentRoute);
+    }
+    public function register() {
+        $currentRoute = Route::currentRouteName();
+        return view('logins.register')->with('currentRoute', $currentRoute);
+    }
+    public function reset () {
+        $currentRoute = Route::currentRouteName();
+        return view('logins.email')->with('currentRoute', $currentRoute);
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function orders()
     {
-        //
+        $user = Auth::user();
+        $currentRoute = Route::currentRouteName();
+        return view('customers.orders')->with('currentRoute', $currentRoute);
     }
 
     /**
