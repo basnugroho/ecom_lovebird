@@ -29,13 +29,13 @@
                     <form method="post" action="{{ route('checkout.review') }}">
                         {{ csrf_field() }}
                         <ul class="nav nav-pills nav-justified">
-                            <li><a href="shop-checkout2.html"><i class="fa fa-truck"></i><br>Delivery Method</a>
+                            <li><a href=""><i class="fa fa-truck"></i><br>Pengiriman</a>
                             </li>
-                            <li><a href="shop-checkout1.html"><i class="fa fa-map-marker"></i><br>Address</a>
+                            <li><a href=""><i class="fa fa-map-marker"></i><br>Alamat</a>
                             </li>
-                            <li class="active"><a href="#"><i class="fa fa-money"></i><br>Payment Method</a>
+                            <li class="active"><a href=""><i class="fa fa-money"></i><br>Pembayaran</a>
                             </li>
-                            <li class="disabled"><a href="shop-checkout4.html"><i class="fa fa-eye"></i><br>Order Review</a>
+                            <li class="disabled"><a href=""><i class="fa fa-eye"></i><br>Review Pesanan</a>
                             </li>
                         </ul>
 
@@ -89,10 +89,10 @@
 
                         <div class="box-footer">
                             <div class="pull-left">
-                                <a href="shop-basket.html" class="btn btn-default"><i class="fa fa-chevron-left"></i>Back to Shipping method</a>
+                                <a href="{{ route('checkout.delivery') }}" class="btn btn-default"><i class="fa fa-chevron-left"></i>Kembali</a>
                             </div>
                             <div class="pull-right">
-                                <button type="submit" class="btn btn-template-main">Continue to Order review<i class="fa fa-chevron-right"></i>
+                                <button type="submit" class="btn btn-template-main">Lanjut<i class="fa fa-chevron-right"></i>
                                 </button>
                             </div>
                         </div>

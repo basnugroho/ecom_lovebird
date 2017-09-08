@@ -30,13 +30,13 @@
                         {{ csrf_field() }}
                         <ul class="nav nav-pills nav-justified">
                             
-                            <li class="disabled"><a href="#"><i class="fa fa-truck"></i><br>Delivery Method</a>
+                            <li class="disabled"><a href="#"><i class="fa fa-truck"></i><br>Pengiriman</a>
                             </li>
-                            <li class="active"><a href="#"><i class="fa fa-map-marker"></i><br>Address</a>
+                            <li class="active"><a href="#"><i class="fa fa-map-marker"></i><br>Alamat</a>
                             </li>
-                            <li class="disabled"><a href="#"><i class="fa fa-money"></i><br>Payment Method</a>
+                            <li class="disabled"><a href="#"><i class="fa fa-money"></i><br>Pembayaran</a>
                             </li>
-                            <li class="disabled"><a href="#"><i class="fa fa-eye"></i><br>Order Review</a>
+                            <li class="disabled"><a href="#"><i class="fa fa-eye"></i><br>Review Pesanan</a>
                             </li>
                         </ul>
 
@@ -113,21 +113,20 @@
                                 </div>
                                 <div class="col-sm-6 col-md-3">
                                     <div class="form-group">
-                                        <label for="delivery">Pengiriman</label>
+                                        <label for="courier">Kurir</label>
                                         <select class="form-control" id="courier" name="courier">
                                             <option value="">Silahkan Pilih</option>
                                             <option {{ $delivery == "jne" ? 'selected' : '' }} value="jne">JNE</option>
-                                            <option {{ $delivery == "tiki" ? 'selected' : '' }} value="tiki">TIKI</option>
                                         </select>
-    
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-3">
                                     <div class="form-group layanan">
                                         <label for="delivery">Layanan</label>
                                         <select class="form-control" id="service" name="service">
-                                            <option>Silahkan Pilih</option>
+                                            <option>Silahkan Pilih Layanan</option>
                                         </select>
+                                        <input type="text" name="ongkir" id="ongkir" value="" readonly>
                                     </div>
                                 </div>
                                 
@@ -138,7 +137,7 @@
 
                         <div class="box-footer">
                             <div class="pull-left">
-                                <a href="shop-basket.html" class="btn btn-default"><i class="fa fa-chevron-left"></i>Back to basket</a>
+                                <a href="{{ url()->previous() }}" class="btn btn-default"><i class="fa fa-chevron-left"></i>Kembali ke Pengiriman</a>
                             </div>
                             <div class="pull-right">
                                 <button type="submit" class="btn btn-template-main">Lanjut Pembayaran<i class="fa fa-chevron-right"></i>
@@ -241,6 +240,8 @@
                     //console.log(json['rajaongkir']['results'])
                     var cities = json["rajaongkir"]["results"];
                     var i = 0;
+                    $('#city').append('<option>Silahkan Pilih Kota</option>');
+                        i++;
                     while(i < cities.length) {   
                         $('#city').append('<option value="'+ cities[i]['city_id']  +'">'+cities[i]['type']+" "+cities[i]['city_name'] +'</option>');
                         i++;
@@ -270,10 +271,12 @@
                     var zip = json["rajaongkir"]["results"]['postal_code'];             
                     //console.log(city_id)
                     $('#zip').val(zip)
+                    //kosongkan input biaya ongkir
+                    var ongkir = $('input#ongkir').val("layanan belum dipilih");
                 }
             });
 
-            //get services
+            //get services when city changed
             $.ajax({
                 url: "{{ route('ongkir.services') }}",
                 type:'get',
@@ -284,28 +287,39 @@
                     //console.log(services)
                     var a = 0;
                     while(a < services.length) {
-                         $('#service').append('<option value="'+ a +'">'+ services[a]['description'] +" ("+ services[a]['cost'][0]['etd'] +' hari)</option>');
-                         a++;
+                        //set services
+                        $('#service').append('<option value="'+ a +'">'+ services[a]['description'] +" ("+ services[a]['cost'][0]['etd'] +' hari)</option>');
+                        a++;
                     }
                 }
             });
 
         });
 
-        //get cost
+        //get cost when service changed
         $('#service').change(function () {
             $("#cost").remove()
-            var serv_id = $('#service').val();
+            var courier = $('#courier').val();
+            //var serv_id = $('#service').val();
             $.ajax({
                 url: "{{ route('ongkir.services') }}",
                 type:'get',
                 data: { courier: "jne", destination: city_id },
-                success: function(data, city_id) {
+                success: function(data) {
                     var json = JSON.parse(data);
-                    console.log(data);
-                    var cost = json["rajaongkir"]["results"][0]['costs'][0]['cost'][serv_id]['value'];             
+                    //console.log(data);
+                    var service_id = $('#service').val();
+                    var cost = json["rajaongkir"]["results"][0]['costs'][service_id]['cost'][0]['value']; //['costs'][id]             
                     console.log(cost);
-                    //$('.layanan').append('<input type="text" name="cost" value="'+ cost +'">')
+                    
+                    try {
+                        var ongkir = $('input#ongkir').val(cost);
+                        console.log(ongkir);
+                    }
+                    catch(err) {
+                        var ongkir = $('input#ongkir').val("error, ongkir tidak tersedia");
+                        console.log(ongkir);
+                    }
                 }
             });
         });

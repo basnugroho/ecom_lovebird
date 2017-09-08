@@ -18,12 +18,17 @@ class CheckoutController extends Controller
     }
 
     public function checkoutDelivery () {
+        if(Cart::content()->count() <= 0) {
+            Session::flash('info', 'Cart masih kosong!');
+            return redirect()->back();
+        }
+
         $currentRoute = Route::currentRouteName();
         return view('checkouts.checkout_delivery')->with('currentRoute', $currentRoute);
     }
 
     public function checkoutAddress (Request $request) {
-        //dd($request->all());
+
         $currentRoute = Route::currentRouteName();
         $user = Auth::user();
         if($request->delivery == "jne") {
@@ -40,6 +45,7 @@ class CheckoutController extends Controller
         return view('checkouts.chekcout_payment')->with('currentRoute', $currentRoute);
     }
     public function checkoutReview () {
+        
         $currentRoute = Route::currentRouteName();
         return view('checkouts.checkout_review')->with('currentRoute', $currentRoute);
     }

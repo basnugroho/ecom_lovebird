@@ -97,7 +97,7 @@ class OngkirsController extends Controller
     }
 
     public function get_services(Request $request) {
-        
+
         $origin = 444;
         $destination = $_GET['destination'];
         $weight = 1000;
@@ -129,8 +129,7 @@ class OngkirsController extends Controller
           echo "cURL Error #:" . $err;
         } else {
             return $response;
-        //   $data = json_decode($response, true);
-        //   return $data['rajaongkir']['results']['costs'][1];
+            
         }
     }
 

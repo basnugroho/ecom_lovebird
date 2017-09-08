@@ -29,9 +29,9 @@
                     <form method="post" action="{{ route('checkout.address') }}">
                         {{ csrf_field() }}
                         <ul class="nav nav-pills nav-justified">
-                            <li class="active"><a href="#"><i class="fa fa-truck"></i><br>Pengiriman</a>
+                            <li class="active"><a href=""><i class="fa fa-truck"></i><br>Pengiriman</a>
                             </li>
-                            <li><a href="shop-checkout1.html"><i class="fa fa-map-marker"></i><br>Alamat</a>
+                            <li class="disabled"><a href=""><i class="fa fa-map-marker"></i><br>Alamat</a>
                             </li>
                             <li class="disabled"><a href="#"><i class="fa fa-money"></i><br>Pembayaran</a>
                             </li>
@@ -70,7 +70,7 @@
 
                         <div class="box-footer">
                             <div class="pull-left">
-                                <a href="shop-basket.html" class="btn btn-default"><i class="fa fa-chevron-left"></i>Back to Cart</a>
+                                <a href="{{ route('cart') }}" class="btn btn-default"><i class="fa fa-chevron-left"></i>Kembali ke Cart</a>
                             </div>
                             <div class="pull-right">
                                 <button type="submit" class="btn btn-template-main">Lanjut<i class="fa fa-chevron-right"></i>
