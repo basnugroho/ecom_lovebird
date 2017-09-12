@@ -17,9 +17,11 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('image');
             $table->bigInteger('price');
-            $table->integer('category_id')->unsigned();
+            $table->integer('category_id')->unsigned()->index();
+            $table->double('weight')->unsigned();
             $table->text('description');
-            //$table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('stock');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

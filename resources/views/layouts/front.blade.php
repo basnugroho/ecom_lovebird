@@ -56,7 +56,7 @@ _________________________________________________________ -->
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-5 contact">
-                            <p class="hidden-sm hidden-xs">Contact us on +420 777 555 333 or hello@universal.com.</p>
+                            <p class="hidden-sm hidden-xs">Hubungi Kami: +62 777 555 333 atau admin@bmwmaster.com</p>
                             <p class="hidden-md hidden-lg"><a href="#" data-animate-hover="pulse"><i class="fa fa-phone"></i></a>  <a href="#" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
                             </p>
                         </div>
@@ -91,9 +91,9 @@ _________________________________________________________ -->
 
                         <div class="navbar-header">
 
-                            <a class="navbar-brand home" href="index.html">
-                                <img src="{{ asset('universal/img/logo.png') }}" alt="Universal logo" class="hidden-xs hidden-sm">
-                                <img src="{{ asset('universal/img/logo-small.png') }}" alt="Universal logo" class="visible-xs visible-sm"><span class="sr-only">Universal - go to homepage</span>
+                            <a class="navbar-brand home" href="{{ route('front')}}">
+                                <img height="130%" src="{{ asset('uploads/front/logo.png') }}" alt="logo" class="hidden-xs hidden-sm">
+                                <img src="{{ asset('universal/img/logo-small.png') }}" alt="logo" class="visible-xs visible-sm"><span class="sr-only">Universal - go to homepage</span>
                             </a>
                             <div class="navbar-buttons">
                                 <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -108,23 +108,23 @@ _________________________________________________________ -->
 
                             <ul class="nav navbar-nav navbar-right">
                                 <li onclick="location.href='{{ route('front') }}';" class="dropdown {{ $currentRoute == 'front' ? 'active' : ''}}">
-                                    <a href="{{ route('front') }}">Home</a>  
+                                    <a href="{{ route('front') }}">Beranda</a>  
                                 </li>
                                 <li onclick="location.href='{{ route('contact') }}';" class="dropdown {{ $currentRoute == 'contact' ? 'active' : ''}}">
-                                <a href="{{ route('contact') }}" class="dropdown-toggle" data-toggle="dropdown">Contact</a>
+                                <a href="{{ route('contact') }}" class="dropdown-toggle" data-toggle="dropdown">Kontak</a>
                                 </li>
                                 <li onclick="location.href='{{ route('about') }}';" class="dropdown {{ $currentRoute == 'about' ? 'active' : ''}}">
-                                <a href="{{ route('about') }}" class="dropdown-toggle" data-toggle="dropdown">About</a>
+                                <a href="{{ route('about') }}" class="dropdown-toggle" data-toggle="dropdown">Tentang Kami</a>
                                 </li>
                                 @if(Auth::check())
                                 <li class="dropdown {{ $currentRoute == 'account' ? 'active' : ''}}">
-                                <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+                                <a href="javascript: void(0)" class="dropdown-toggle" data-toggle="dropdown">Akun <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{ route('account') }}">profile</a>
+                                        <li><a href="{{ route('account') }}">Profil</a>
                                         </li>
                                         <li>
                                             <a href="{{ route('customer.orders') }}">
-                                            Orders
+                                            Pesanan
                                             </a>
                                         </li>
                                         <li>
@@ -391,8 +391,30 @@ _________________________________________________________ -->
 
         <footer id="footer">
             <div class="container">
-                <div class="col-md-3 col-sm-6">
-                    <h4>About us</h4>
+
+                <div class="col-md-6 col-sm-6">
+
+                    <h4>Kontak</h4>
+
+                    <p><strong>CV. Rajawali Nuansa Indah</strong>
+                        <br>Jl. Yang Benar
+                        <br>Surabaya
+                        <br>Jawa Timur
+                        <br>123
+                        <br>
+                        <strong>Indonesia</strong>
+                    </p>
+
+                    <a href="contact.html" class="btn btn-small btn-template-main">Go to contact page</a>
+
+                    <hr class="hidden-md hidden-lg hidden-sm">
+
+                </div>
+
+
+
+                <div class="col-md-6 col-sm-6">
+                    <h4>Tentang Kami</h4>
 
                     <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
 
@@ -420,7 +442,7 @@ _________________________________________________________ -->
                 </div>
                 <!-- /.col-md-3 -->
 
-                <div class="col-md-3 col-sm-6">
+                <!-- <div class="col-md-3 col-sm-6">
 
                     <h4>Blog</h4>
 
@@ -461,35 +483,18 @@ _________________________________________________________ -->
 
                     <hr class="hidden-md hidden-lg">
 
-                </div>
+                </div> -->
 
                 <!-- /.col-md-3 -->
 
-                <div class="col-md-3 col-sm-6">
-
-                    <h4>Contact</h4>
-
-                    <p><strong>Universal Ltd.</strong>
-                        <br>13/25 New Avenue
-                        <br>Newtown upon River
-                        <br>45Y 73J
-                        <br>England
-                        <br>
-                        <strong>Great Britain</strong>
-                    </p>
-
-                    <a href="contact.html" class="btn btn-small btn-template-main">Go to contact page</a>
-
-                    <hr class="hidden-md hidden-lg hidden-sm">
-
-                </div>
+                
                 <!-- /.col-md-3 -->
 
 
 
-                <div class="col-md-3 col-sm-6">
+                <!-- <div class="col-md-3 col-sm-6">
 
-                    <h4>Photostream</h4>
+                    <h4>Gallery</h4>
 
                     <div class="photostream">
                         <div>
@@ -524,7 +529,8 @@ _________________________________________________________ -->
                         </div>
                     </div>
 
-                </div>
+                </div> -->
+
                 <!-- /.col-md-3 -->
             </div>
             <!-- /.container -->

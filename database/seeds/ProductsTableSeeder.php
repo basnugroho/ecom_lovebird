@@ -15,14 +15,14 @@ class ProductsTableSeeder extends Seeder
         factory(\App\Product::class, 20)->create();
 
         // $p1 = [
-        //     'name' => 'Learn to build website with HTML5',
+        //     'name' => 'METABOLIS  PUTIH BMW MASTER',
         //     'image' => 'uploads/products/book.png',
         //     'price' => 5000,
         //     'description' => 'Lorem Ipsum is setting i it to make a type specimen book.',
         // ];
 
         // $p2 = [
-        //     'name' => 'PHP Development in Depth',
+        //     'name' => 'F1 LOVEBIRD FULL NGEKEK LOMBA & F1 SERIES HARIAN',
         //     'image' => 'uploads/products/book.png',
         //     'price' => 2400,
         //     'description' => 'Lorem Ipsum is simply dummy text of the printing and typ'
