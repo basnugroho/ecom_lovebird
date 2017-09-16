@@ -132,13 +132,13 @@
 
                     <div class="row addresses">
                         <div class="col-sm-6">
-                            <h3 class="text-uppercase">Invoice address</h3>
+                            <!-- <h3 class="text-uppercase">Invoice address</h3>
                             <p>John Brown
                                 <br>13/25 New Avenue
                                 <br>New Heaven
                                 <br>45Y 73J
                                 <br>England
-                                <br>Great Britain</p>
+                                <br>Great Britain</p> -->
                         </div>
                         <div class="col-sm-6">
                             <h3 class="text-uppercase">Shipping address</h3>

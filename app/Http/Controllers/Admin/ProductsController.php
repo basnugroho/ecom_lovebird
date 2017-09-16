@@ -143,6 +143,8 @@ class ProductsController extends Controller
 
         $product->name = $request->name;
         $product->price = $request->price;
+        $product->stock = $request->stock;
+        $product->weight = $request->weight;
         $product->category_id = $request->category_id;
         $product->description = $request->description;
         $product->save();

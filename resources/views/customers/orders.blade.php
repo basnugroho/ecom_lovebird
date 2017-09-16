@@ -52,7 +52,7 @@
                                     <td>$ 150.00</td>
                                     <td><span class="label label-info">Being prepared</span>
                                     </td>
-                                    <td><a href="customer-order.html" class="btn btn-template-main btn-sm">View</a>
+                                    <td><a href="{{ route('order.details') }}" class="btn btn-template-main btn-sm">View</a>
                                     </td>
                                 </tr>
                                 <tr>

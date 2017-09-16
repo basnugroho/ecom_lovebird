@@ -43,6 +43,13 @@ class UsersController extends Controller
         return view('customers.orders')->with('currentRoute', $currentRoute);
     }
 
+    public function order_details()
+    {
+        $user = Auth::user();
+        $currentRoute = Route::currentRouteName();
+        return view('customers.order_details')->with('currentRoute', $currentRoute);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

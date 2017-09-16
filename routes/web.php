@@ -107,6 +107,11 @@ Route::get('/customer/orders', [
     'as' => 'customer.orders'
 ]);
 
+Route::get('/customer/order/details', [
+    'uses' => 'UsersController@order_details',
+    'as' => 'order.details'
+]);
+
 
 Route::get('/provinces', [
     'uses' => 'OngkirsController@get_provinces',
