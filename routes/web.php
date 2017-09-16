@@ -87,8 +87,10 @@ Route::get('/admin/profile', [
     'uses' => 'Admin\\AdminController@profile',
     'as' => 'admin.profile'
 ]);
+
 Route::resource('admin/categories', 'Admin\\CategoriesController');
 Route::resource('admin/products', 'Admin\\ProductsController');
+
 
 Route::get('/customer/login', [
     'uses' => 'UsersController@login',
