@@ -28,7 +28,7 @@
                             'files' => true
                         ]) !!}
 
-                        @include ('admin.products.form', ['submitButtonText' => 'Update'])
+                        @include ('admin.products.form', ['submitButtonText' => 'Simpan'])
 
                         {!! Form::close() !!}
 

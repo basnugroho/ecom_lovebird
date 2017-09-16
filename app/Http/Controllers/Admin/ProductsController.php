@@ -61,22 +61,26 @@ class ProductsController extends Controller
 			'name' => 'required',
             'price' => 'required',
             'image' => 'required|image',
+            'stock' => 'required',
+            'weight' => 'required',
 			'category_id' => 'required',
 			'description' => 'required'
 		]);
-        //$requestData = $request->all();
-        //$product = new Product;
         
         //image:
         $product_image = $request->image;
         $product_image_new_name = time()."_".$product_image->getClientOriginalName();
         $product_image->move('uploads/products/', $product_image_new_name);
         
+        //dd($request->all());
+
         //save all
         Product::create([
             'name' => $request->name,
             'price' => $request->price,
             'image' => 'uploads/products/'.$product_image_new_name,
+            'stock' => $request->stock,
+            'weight' => $request->weight,
             'category_id' => $request->category_id,
             'description' => $request->description
         ]);
