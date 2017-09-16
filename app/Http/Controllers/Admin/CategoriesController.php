@@ -51,7 +51,7 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-			'name' => 'required'
+            'name' => 'required'
 		]);
         $requestData = $request->all();
         
@@ -101,10 +101,11 @@ class CategoriesController extends Controller
     public function update($id, Request $request)
     {
         $this->validate($request, [
-			'name' => 'required'
+            'name' => 'required',
+            'description' => 'required'
 		]);
         $requestData = $request->all();
-        
+        //dd($requestData);
         $category = Category::findOrFail($id);
         $category->update($requestData);
 

@@ -7,7 +7,7 @@
 
             <div class="col-md-9">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Products</div>
+                    <div class="panel-heading">Daftar Produk</div>
                     <div class="panel-body">
                         <a href="{{ url('/admin/products/create') }}" class="btn btn-success btn-sm" title="Add New Product">
                             <i class="fa fa-plus" aria-hidden="true"></i> Tambah Produk
