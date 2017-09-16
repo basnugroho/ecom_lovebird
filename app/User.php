@@ -27,11 +27,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function role () {
-        return $this->belongsTo('App\Role');
+    public function address () {
+        return $this->hasOne('App\Address');
     }
 
-    public function address () {
-        return $this->hasOne('App\Adress');
+    public function orders () {
+        return $this->hasMany('App\Order');
     }
 }

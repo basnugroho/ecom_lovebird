@@ -19,7 +19,7 @@ class CreateAddressesTable extends Migration
             $table->string('city')->nullable();
             $table->integer('zip')->nullable();
             $table->string('province')->nullable();
-            $table->string('country')->nullable()->default('indonesia');
+            $table->string('country')->nullable()->default('Indonesia');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

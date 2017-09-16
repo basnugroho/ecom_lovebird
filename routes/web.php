@@ -90,7 +90,7 @@ Route::get('/admin/profile', [
 
 Route::resource('admin/categories', 'Admin\\CategoriesController');
 Route::resource('admin/products', 'Admin\\ProductsController');
-
+Route::resource('admin/customers', 'Admin\\CustomersController');
 
 Route::get('/customer/login', [
     'uses' => 'UsersController@login',

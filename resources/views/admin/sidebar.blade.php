@@ -10,6 +10,9 @@
                     <a href="{{ route('admin.profile') }}">
                         Dashboard
                     </a>
+                    <a href="{{ route('customers.index') }}">
+                        Customers
+                    </a>
                     <a href="{{ route('products.index') }}">
                         Products
                     </a>

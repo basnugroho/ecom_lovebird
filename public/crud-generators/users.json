@@ -10,7 +10,7 @@
         },
         {
             "name": "password",
-            "type": "bigint"
+            "type": "string"
         },
         {
             "name": "admin",
