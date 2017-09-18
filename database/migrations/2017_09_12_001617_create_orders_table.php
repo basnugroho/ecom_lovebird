@@ -18,11 +18,11 @@ class CreateOrdersTable extends Migration
             $table->enum('status', ['not paid', 'paid', 'ready to take', 'sending', 'done']);
             $table->string('receipt')->nullable();
             $table->integer('user_id')->unsigned()->index();
-            $table->integer('delivery_id')->unsigned()->index();
-
+            $table->enum('delivery_method', ['ambil', 'jne']);
+            $table->string('total');
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('delivery_id')->references('id')->on('deliveries');
+            //$table->foreign('delivery_id')->references('id')->on('deliveries');
             $table->timestamps();
         });
     }

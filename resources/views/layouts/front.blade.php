@@ -587,7 +587,15 @@ _________________________________________________________ -->
             toastr.info('{{ Session::get('info') }}')
         @endif
 
-
+        @if(Session::has('ongkir'))
+            toastr.info('{{ Session::get('ongkir') }}')
+        @endif
+        @if(Session::has('delivery_id'))
+            toastr.info('{{ Session::get('delivery_id') }}')
+        @endif
+        @if(Session::has('service'))
+            toastr.info('{{ Session::get('service') }}')
+        @endif
     </script>
     @yield('scripts')
 

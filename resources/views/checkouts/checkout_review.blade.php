@@ -27,7 +27,7 @@
             <div class="col-md-9 clearfix" id="checkout">
 
                 <div class="box">
-                    <form method="post" action="">
+                    <form method="post" action="{{ route('checkout.pay') }}">
                         <ul class="nav nav-pills nav-justified">
                             <li><a href=""><i class="fa fa-truck"></i><br>Pengiriman</a>
                             </li>
@@ -40,54 +40,57 @@
                         </ul>
 
                         <div class="content">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th colspan="2">Product</th>
-                                            <th>Quantity</th>
-                                            <th>Unit price</th>
-                                            <th>Discount</th>
-                                            <th>Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <a href="#">
-                                                    <img src="img/detailsquare.jpg" alt="White Blouse Armani">
-                                                </a>
-                                            </td>
-                                            <td><a href="#">White Blouse Armani</a>
-                                            </td>
-                                            <td>2</td>
-                                            <td>$123.00</td>
-                                            <td>$0.00</td>
-                                            <td>$246.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <a href="#">
-                                                    <img src="img/basketsquare.jpg" alt="Black Blouse Armani">
-                                                </a>
-                                            </td>
-                                            <td><a href="#">Black Blouse Armani</a>
-                                            </td>
-                                            <td>1</td>
-                                            <td>$200.00</td>
-                                            <td>$0.00</td>
-                                            <td>$200.00</td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th colspan="5">Total</th>
-                                            <th>$446.00</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                        <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">Product</th>
+                                    <th>Quantity</th>
+                                    <th>Unit price (Rp)</th>
+                                    <th colspan="2">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{ csrf_field() }}
+                                <input type="hidden" name="user_id" value={{ Auth::user()->id }}>
+                                <input type="hidden" name="delivery_method" value='ambil'>
+                                @foreach(Cart::content() as $product)
+                                <tr>
+                                    <td>
+                                        <a href="#">
+                                            <img src="{{ asset($product->model->image) }}" alt="{{ $product->rowId }}">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="#">{{ $product->name }}</a>
+                                    </td>
+                                    <td>
+                                        <input type="hidden" name="product_id[]" value="{{ $product->id }}">
+                                        <input name="qty[]" class="small" type="number" value="{{ $product->qty }}" class="form-control">
+                                    </td>
+                                    <td>
+                                        <input type="hidden" name="selling_price[]" value="{{ $product->price }}">
+                                        {{ $product->price() }}
+                                    </td>
+                                    <td>
+                                        {{ $product->total() }}
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('cart.delete', ['row_id' => $product->rowId] ) }}"><i class="fa fa-trash-o"></i></a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="5">Total</th>
+                                    <input type="hidden" name="total" value="{{ Cart::total() }}">
+                                    <th colspan="2">{{ Cart::total() }}</th>
+                                </tr>
+                            </tfoot>
+                        </table>
 
-                            </div>
+                    </div>
                             <!-- /.table-responsive -->
                         </div>
                         <!-- /.content -->
@@ -97,7 +100,7 @@
                                 <a href="{{ route('checkout.delivery') }}" class="btn btn-default"><i class="fa fa-chevron-left"></i>Kembali</a>
                             </div>
                             <div class="pull-right">
-                                <button type="submit" class="btn btn-template-main">Pesan<i class="fa fa-chevron-right"></i>
+                                <button type="submit" class="btn btn-template-main">Bayar<i class="fa fa-chevron-right"></i>
                                 </button>
                             </div>
                         </div>
@@ -110,38 +113,7 @@
             <!-- /.col-md-9 -->
 
             <div class="col-md-3">
-
-                <div class="box" id="order-summary">
-                    <div class="box-header">
-                        <h3>Order summary</h3>
-                    </div>
-                    <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
-
-                    <div class="table-responsive">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td>Order subtotal</td>
-                                    <th>$446.00</th>
-                                </tr>
-                                <tr>
-                                    <td>Shipping and handling</td>
-                                    <th>$10.00</th>
-                                </tr>
-                                <tr>
-                                    <td>Tax</td>
-                                    <th>$0.00</th>
-                                </tr>
-                                <tr class="total">
-                                    <td>Total</td>
-                                    <th>$456.00</th>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-
+            @include('includes.order_summary')
             </div>
             <!-- /.col-md-3 -->
 

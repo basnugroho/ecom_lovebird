@@ -44,14 +44,14 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="firstname">Firstname</label>
-                                        <input type="text" class="form-control" id="firstname" value="{{ $user->name }}">
+                                        <label for="name">Firstname</label>
+                                        <input type="text" class="form-control" name="name" value="{{ $user->name }}">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="lastname">Lastname</label>
-                                        <input type="text" class="form-control" id="lastname">
+                                        <input type="text" class="form-control" name="lastname">
                                     </div>
                                 </div>
                             </div>
@@ -61,13 +61,13 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input type="text" class="form-control" id="email" value="{{ $user->email }}">
+                                        <input type="text" class="form-control" name="email" value="{{ $user->email }}">
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-3">
                                     <div class="form-group">
                                         <label for="country">Negara</label>
-                                        <select class="form-control" id="country">
+                                        <select class="form-control" name="country">
                                             <option value="1">Indonesia</option>
                                         </select>
                                     </div>
@@ -75,7 +75,7 @@
                                 <div class="col-sm-6 col-md-3">
                                     <div class="form-group">
                                         <label for="state">Provinsi</label>
-                                        <select class="form-control" id="state">
+                                        <select class="form-control" id="state" name="state">
                                             <option value="">Silahkan Pilih</option>
                                         </select>
                                     </div>
@@ -89,32 +89,32 @@
                                     <div class="form-group">
                                         <label for="city">Kota</label>
                                         <select class="form-control" id="city" name="city">
-                                            <option>Silahkan Pilih Provinsi Duhulu</option>
+                                            <option>Silahkan Pilih Provinsi Dahulu</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-3">
                                     <div class="form-group">
                                         <label for="zip">ZIP</label>
-                                        <input type="text" class="form-control" id="zip">
+                                        <input type="text" class="form-control" id="zip" name="zip">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="street">Jalan</label>
-                                        <input type="text" class="form-control" id="street">
+                                        <input type="text" class="form-control" name="street">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="phone">Telepon</label>
-                                        <input type="text" class="form-control" id="phone">
+                                        <input type="text" class="form-control" name="phone">
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-3">
                                     <div class="form-group">
                                         <label for="courier">Kurir</label>
-                                        <select class="form-control" id="courier" name="courier">
+                                        <select class="form-control" id="courier" name="delivery_id">
                                             <option value="">Silahkan Pilih</option>
                                             <option {{ $delivery == "jne" ? 'selected' : '' }} value="jne">JNE</option>
                                         </select>
@@ -153,38 +153,7 @@
             <!-- /.col-md-9 -->
 
             <div class="col-md-3">
-
-                <div class="box" id="order-summary">
-                    <div class="box-header">
-                        <h3>Order summary</h3>
-                    </div>
-                    <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
-
-                    <div class="table-responsive">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td>Order subtotal</td>
-                                    <th>$446.00</th>
-                                </tr>
-                                <tr>
-                                    <td>Shipping and handling</td>
-                                    <th>$10.00</th>
-                                </tr>
-                                <tr>
-                                    <td>Tax</td>
-                                    <th>$0.00</th>
-                                </tr>
-                                <tr class="total">
-                                    <td>Total</td>
-                                    <th>$456.00</th>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-
+            @include('includes.order_summary')
             </div>
             <!-- /.col-md-3 -->
 
@@ -207,7 +176,8 @@
             url: "{{ route('ongkir.provinces') }}",
             type:'get',
             data: { query: txt },
-            success: function(data) {	                
+            success: function(data) {
+                //alert(data);	                
                 var json = JSON.parse(data);
                 var provinces = json["rajaongkir"]["results"];
                 var i = 0;

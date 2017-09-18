@@ -44,9 +44,9 @@
                                 <div class="col-sm-12">
                                     <div class="box payment-method">
 
-                                        <h4>Paypal</h4>
+                                        <h4>BCA</h4>
 
-                                        <p>We like it all.</p>
+                                        <p>0111929822 an Baskoro Nugroho</p>
 
                                         <div class="box-footer text-center">
 
@@ -57,27 +57,13 @@
                                 <div class="col-sm-12">
                                     <div class="box payment-method">
 
-                                        <h4>Payment gateway</h4>
+                                        <h4>Bayar Ditempat</h4>
 
-                                        <p>VISA and Mastercard only.</p>
+                                        <p>Pembayaran langsung ditempat distributor</p>
 
                                         <div class="box-footer text-center">
 
                                             <input type="radio" name="payment" value="payment2">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-12">
-                                    <div class="box payment-method">
-
-                                        <h4>Cash on delivery</h4>
-
-                                        <p>You pay when you get it.</p>
-
-                                        <div class="box-footer text-center">
-
-                                            <input type="radio" name="payment" value="payment3">
                                         </div>
                                     </div>
                                 </div>
@@ -105,38 +91,7 @@
             <!-- /.col-md-9 -->
 
             <div class="col-md-3">
-
-                <div class="box" id="order-summary">
-                    <div class="box-header">
-                        <h3>Order summary</h3>
-                    </div>
-                    <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
-
-                    <div class="table-responsive">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td>Order subtotal</td>
-                                    <th>$446.00</th>
-                                </tr>
-                                <tr>
-                                    <td>Shipping and handling</td>
-                                    <th>$10.00</th>
-                                </tr>
-                                <tr>
-                                    <td>Tax</td>
-                                    <th>$0.00</th>
-                                </tr>
-                                <tr class="total">
-                                    <td>Total</td>
-                                    <th>$456.00</th>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-
+            @include('includes.order_summary')
             </div>
             <!-- /.col-md-3 -->
 

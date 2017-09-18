@@ -11,13 +11,19 @@
                         Dashboard
                     </a>
                     <a href="{{ route('customers.index') }}">
-                        Customers
+                        Pelanggan
                     </a>
                     <a href="{{ route('products.index') }}">
-                        Products
+                        Produk
                     </a>
                     <a href="{{ route('categories.index') }}">
-                        Categories
+                        Kategori Produk
+                    </a>
+                    <a href="">
+                        Pesanan
+                    </a>
+                    <a href="">
+                        Pengaturan
                     </a>
                 </li>
             </ul>

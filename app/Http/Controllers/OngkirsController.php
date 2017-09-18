@@ -11,7 +11,7 @@ class OngkirsController extends Controller
 
     function get_provinces (Request $request) {
         $curl = curl_init();
-        $id = $_GET['query'];
+        //$id = $_GET['query'];
         curl_setopt_array($curl, array(
           CURLOPT_URL => "https://api.rajaongkir.com/starter/province?id=",
           CURLOPT_RETURNTRANSFER => true,
