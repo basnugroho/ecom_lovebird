@@ -44,30 +44,26 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="name">Firstname</label>
-                                        <input type="text" class="form-control" name="name" value="{{ $user->name }}">
+                                        <label for="name">Nama</label>
+                                        <input type="text" class="form-control" name="name" value="{{ $user->name }}" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="lastname">Lastname</label>
-                                        <input type="text" class="form-control" name="lastname">
+                                        <label for="phone">Telepon</label>
+                                        <input type="text" class="form-control" name="phone" value="{{ $user->address->phone }}" required>
                                     </div>
                                 </div>
+
                             </div>
                             <!-- /.row -->
 
                             <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input type="text" class="form-control" name="email" value="{{ $user->email }}">
-                                    </div>
-                                </div>
+
                                 <div class="col-sm-6 col-md-3">
                                     <div class="form-group">
                                         <label for="country">Negara</label>
-                                        <select class="form-control" name="country">
+                                        <select class="form-control" name="country" value="{{ $user->address->country }}" required readonly>
                                             <option value="1">Indonesia</option>
                                         </select>
                                     </div>
@@ -75,20 +71,15 @@
                                 <div class="col-sm-6 col-md-3">
                                     <div class="form-group">
                                         <label for="state">Provinsi</label>
-                                        <select class="form-control" id="state" name="state">
+                                        <select class="form-control" id="state" name="state" value="{{ $user->address->state }}" required>
                                             <option value="">Silahkan Pilih</option>
                                         </select>
                                     </div>
                                 </div>
-                                
-                            </div>
-                            <!-- /.row -->
-
-                            <div class="row">
                                 <div class="col-sm-6 col-md-3">
                                     <div class="form-group">
                                         <label for="city">Kota</label>
-                                        <select class="form-control" id="city" name="city">
+                                        <select class="form-control" id="city" name="city" value="{{ $user->address->city }}" required>
                                             <option>Silahkan Pilih Provinsi Dahulu</option>
                                         </select>
                                     </div>
@@ -96,25 +87,26 @@
                                 <div class="col-sm-6 col-md-3">
                                     <div class="form-group">
                                         <label for="zip">ZIP</label>
-                                        <input type="text" class="form-control" id="zip" name="zip">
+                                        <input type="text" class="form-control" id="zip" value="{{ $user->address->zip }}" name="zip">
                                     </div>
                                 </div>
+                                
+                            </div>
+                            <!-- /.row -->
+
+                            <div class="row">
+
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="street">Jalan</label>
-                                        <input type="text" class="form-control" name="street">
+                                        <input type="text" class="form-control" name="street" value="{{ $user->address->street }}" required>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="phone">Telepon</label>
-                                        <input type="text" class="form-control" name="phone">
-                                    </div>
-                                </div>
+
                                 <div class="col-sm-6 col-md-3">
                                     <div class="form-group">
                                         <label for="courier">Kurir</label>
-                                        <select class="form-control" id="courier" name="delivery_id">
+                                        <select class="form-control" id="courier" name="delivery_id" required>
                                             <option value="">Silahkan Pilih</option>
                                             <option {{ $delivery == "jne" ? 'selected' : '' }} value="jne">JNE</option>
                                         </select>
@@ -123,7 +115,7 @@
                                 <div class="col-sm-6 col-md-3">
                                     <div class="form-group layanan">
                                         <label for="delivery">Layanan</label>
-                                        <select class="form-control" id="service" name="service">
+                                        <select class="form-control" id="service" name="service" required>
                                             <option>Silahkan Pilih Layanan</option>
                                         </select>
                                         <input type="text" name="ongkir" id="ongkir" value="" readonly>
@@ -284,6 +276,7 @@
                     
                     try {
                         var ongkir = $('input#ongkir').val(cost);
+                        $('#ongkirSummary').val(cost);
                         console.log(ongkir);
                     }
                     catch(err) {

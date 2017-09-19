@@ -47,6 +47,7 @@ class CheckoutController extends Controller
         $user = Auth::user();
         $address = $user->address;
         if(isset($request->ongkir)) {
+            //dd($request->all());
             $address->street = $request->street;
             $address->city = $request->city;
             $address->zip = $request->zip;
@@ -62,8 +63,8 @@ class CheckoutController extends Controller
 
         return view('checkouts.chekcout_payment')->with('currentRoute', $currentRoute);
     }
-    public function checkoutReview () {
-        
+    public function checkoutReview (Request $request) {
+        $request->session()->put('payment', $request->payment);
         $currentRoute = Route::currentRouteName();
         return view('checkouts.checkout_review')->with('currentRoute', $currentRoute);
     }

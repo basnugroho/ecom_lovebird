@@ -14,7 +14,7 @@
                     </tr>
                     <tr>
                         <td>Ongkos kirim dan layanan</td>
-                        <th>0</th>
+                        <th id="ongkirSummary">{{ Session::get('ongkir') }}</th>
                     </tr>
                     <tr>
                         <td>Pajak</td>
