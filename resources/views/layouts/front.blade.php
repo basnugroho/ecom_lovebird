@@ -397,15 +397,14 @@ _________________________________________________________ -->
                     <h4>Kontak</h4>
 
                     <p><strong>CV. Rajawali Nuansa Indah</strong>
-                        <br>Jl. Yang Benar
+                        <br>Jl. Bukit Palma C3/33 Citraland
                         <br>Surabaya
                         <br>Jawa Timur
-                        <br>123
-                        <br>
+                        <br>60292<br>
                         <strong>Indonesia</strong>
                     </p>
 
-                    <a href="contact.html" class="btn btn-small btn-template-main">Go to contact page</a>
+                    <a href="{{ route('contact') }}" class="btn btn-small btn-template-main">Hubungi Kami</a>
 
                     <hr class="hidden-md hidden-lg hidden-sm">
 
@@ -414,13 +413,14 @@ _________________________________________________________ -->
 
 
                 <div class="col-md-6 col-sm-6">
-                    <h4>Tentang Kami</h4>
+                    <h4>BMW MASTER</h4>
 
-                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                    <p>Buka hari Senin – Jumat distributor buka mulai jam 08.00 WIB – 17.00 WIB.<br>
+                        Melayani pembelian secara langsung dan pengiriman menggunakan JNE.</p>
 
                     <hr>
 
-                    <h4>Join our monthly newsletter</h4>
+                    <!-- <h4>Join our monthly newsletter</h4>
 
                     <form>
                         <div class="input-group">
@@ -434,10 +434,10 @@ _________________________________________________________ -->
                     </span>
 
                         </div>
-                        <!-- /input-group -->
+
                     </form>
 
-                    <hr class="hidden-md hidden-lg hidden-sm">
+                    <hr class="hidden-md hidden-lg hidden-sm"> -->
 
                 </div>
                 <!-- /.col-md-3 -->

@@ -140,7 +140,7 @@ Route::get('/customer/orders', [
     'as' => 'customer.orders'
 ]);
 
-Route::get('/customer/order/details', [
+Route::get('/customer/order/{id}/details/', [
     'uses' => 'UsersController@order_details',
     'as' => 'order.details'
 ]);

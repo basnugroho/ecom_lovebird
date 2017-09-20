@@ -64,65 +64,48 @@
 
             <div class="col-md-9 clearfix" id="customer-order">
 
-                <p class="lead">Order #1735 was placed on <strong>22/06/2013</strong> and is currently <strong>Being prepared</strong>.</p>
-                <p class="lead text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
+                <p class="lead">Pesanan #{{ $orders->id }} tercatat pada tanggal <strong>{{ $orders->created_at}}</strong> status saat ini <strong>{{ $orders->status }}</strong>.</p>
+                <p class="lead text-muted">Jika anda membutuhkan bantuan, silahkan <a href="{{ route('contact')}}">hubungi kami</a>, kami siap membantu anda.</p>
 
                 <div class="box">
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th colspan="2">Product</th>
-                                    <th>Quantity</th>
-                                    <th>Unit price</th>
-                                    <th>Discount</th>
+                                    <th colspan="2">Barang</th>
+                                    <th>Jumlah</th>
+                                    <th>Harga Jual</th>
                                     <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($orders->products as $order)
                                 <tr>
                                     <td>
                                         <a href="#">
                                             <img src="img/detailsquare.jpg" alt="White Blouse Armani">
                                         </a>
                                     </td>
-                                    <td><a href="#">White Blouse Armani</a>
+                                    <td><a href="#"></a>
                                     </td>
-                                    <td>2</td>
-                                    <td>$123.00</td>
-                                    <td>$0.00</td>
-                                    <td>$246.00</td>
+                                    <td>{{ $order->pivot->quantity}}</td>
+                                    <td>{{ $order->pivot->selling_price}}</td>
+                                    <td>{{ $order->pivot->selling_price}}</td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">
-                                            <img src="img/basketsquare.jpg" alt="Black Blouse Armani">
-                                        </a>
-                                    </td>
-                                    <td><a href="#">Black Blouse Armani</a>
-                                    </td>
-                                    <td>1</td>
-                                    <td>$200.00</td>
-                                    <td>$0.00</td>
-                                    <td>$200.00</td>
-                                </tr>
+                                @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th colspan="5" class="text-right">Order subtotal</th>
-                                    <th>$446.00</th>
+                                    <th colspan="4" class="text-right">Subtotal</th>
+                                    <th>{{ $orders->total * 1000 }}</th>
                                 </tr>
                                 <tr>
-                                    <th colspan="5" class="text-right">Shipping and handling</th>
-                                    <th>$10.00</th>
+                                    <th colspan="4" class="text-right">Ongkos Kirim</th>
+                                    <th>{{ $orders->delivery_cost }}</th>
                                 </tr>
                                 <tr>
-                                    <th colspan="5" class="text-right">Tax</th>
-                                    <th>$0.00</th>
-                                </tr>
-                                <tr>
-                                    <th colspan="5" class="text-right">Total</th>
-                                    <th>$456.00</th>
+                                    <th colspan="4" class="text-right">Total</th>
+                                    <th><?php $a = $orders->total * 1000 + $orders->delivery_cost; echo $a;?></th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -130,6 +113,7 @@
                     </div>
                     <!-- /.table-responsive -->
 
+                    @if($orders->delivery_method != 'take away')
                     <div class="row addresses">
                         <div class="col-sm-6">
                             <!-- <h3 class="text-uppercase">Invoice address</h3>
@@ -141,15 +125,16 @@
                                 <br>Great Britain</p> -->
                         </div>
                         <div class="col-sm-6">
-                            <h3 class="text-uppercase">Shipping address</h3>
-                            <p>John Brown
-                                <br>13/25 New Avenue
-                                <br>New Heaven
-                                <br>45Y 73J
-                                <br>England
-                                <br>Great Britain</p>
+                            <h3 class="text-uppercase">Alamat Kirim</h3>
+                            <p>{{ $user->name}}
+                                <br>{{ $user->address->street }}
+                                <br>{{ $user->address->city }} {{ $user->address->state }}
+                                <br>{{ $user->address->zip }}
+                                <br>{{ $user->address->country }}
+                                <br>{{ $user->address->phone }}</p>
                         </div>
                     </div>
+                    @endif
                     <!-- /.addresses -->
 
                 </div>
@@ -163,38 +148,7 @@
             <!-- *** RIGHT COLUMN ***
         _________________________________________________________ -->
 
-            <div class="col-md-3">
-                <!-- *** CUSTOMER MENU ***
-_________________________________________________________ -->
-                <div class="panel panel-default sidebar-menu">
-
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Customer section</h3>
-                    </div>
-
-                    <div class="panel-body">
-
-                        <ul class="nav nav-pills nav-stacked">
-                            <li class="active">
-                                <a href="customer-orders.html"><i class="fa fa-list"></i> My orders</a>
-                            </li>
-                            <li>
-                                <a href="customer-wishlist.html"><i class="fa fa-heart"></i> My wishlist</a>
-                            </li>
-                            <li>
-                                <a href="customer-account.html"><i class="fa fa-user"></i> My account</a>
-                            </li>
-                            <li>
-                                <a href="index.html"><i class="fa fa-sign-out"></i> Logout</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- /.col-md-3 -->
-
-                <!-- *** CUSTOMER MENU END *** -->
-            </div>
+            @include('customers.includes.customer_menu')
 
             <!-- *** RIGHT COLUMN END *** -->
 

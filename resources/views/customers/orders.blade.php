@@ -30,7 +30,7 @@
 
             <div class="col-md-9" id="customer-orders">
 
-                <p class="text-muted lead">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
+                <p class="text-muted lead">Jika anda membutuhkan bantuan, silahkan hubungi <a href="{{ route('contact') }}">Hubungi kami</a>, kami akan bantu anda.</p>
 
                 <div class="box">
 
@@ -46,51 +46,32 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($orders as $order)
                                 <tr>
-                                    <th># 1735</th>
-                                    <td>22/06/2013</td>
-                                    <td>$ 150.00</td>
-                                    <td><span class="label label-info">Being prepared</span>
+                                    <th># {{ $order->id }}</th>
+                                    <td>{{ $order->created_at }}</td>
+                                    <td>{{ $order->total }}</td>
+                                    <td>
+                                        @if($order->status == 'not paid')
+                                        <span class="label label-warning">belum dibayar</span>
+                                        @elseif($order->status == 'paid')
+                                        <span class="label label-info">lunas</span>
+                                        @elseif($order->status == 'ready to take')
+                                        <span class="label label-info">siap diambil</span>
+                                        @elseif($order->status == 'sending')
+                                        <span class="label label-info">siap diambil</span>
+                                        @elseif($order->status == 'done')
+                                        <span class="label label-success">selesai</span>
+                                        @elseif($order->status == 'cancel')
+                                        <span class="label label-danger">batal</span>
+                                        @else
+                                        <span class="label label-warning">kasus khusus</span>
+                                        @endif
                                     </td>
-                                    <td><a href="{{ route('order.details') }}" class="btn btn-template-main btn-sm">View</a>
+                                    <td><a href="{{ route('order.details', ['id' => $order->id ]) }}" class="btn btn-template-main btn-sm">View</a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th># 1735</th>
-                                    <td>22/06/2013</td>
-                                    <td>$ 150.00</td>
-                                    <td><span class="label label-info">Being prepared</span>
-                                    </td>
-                                    <td><a href="customer-order.html" class="btn btn-template-main btn-sm">View</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th># 1735</th>
-                                    <td>22/06/2013</td>
-                                    <td>$ 150.00</td>
-                                    <td><span class="label label-success">Received</span>
-                                    </td>
-                                    <td><a href="customer-order.html" class="btn btn-template-main btn-sm">View</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th># 1735</th>
-                                    <td>22/06/2013</td>
-                                    <td>$ 150.00</td>
-                                    <td><span class="label label-danger">Cancelled</span>
-                                    </td>
-                                    <td><a href="customer-order.html" class="btn btn-template-main btn-sm">View</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th># 1735</th>
-                                    <td>22/06/2013</td>
-                                    <td>$ 150.00</td>
-                                    <td><span class="label label-warning">On hold</span>
-                                    </td>
-                                    <td><a href="customer-order.html" class="btn btn-template-main btn-sm">View</a>
-                                    </td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -107,40 +88,8 @@
             <!-- *** RIGHT COLUMN ***
         _________________________________________________________ -->
 
-            <div class="col-md-3">
-                <!-- *** CUSTOMER MENU ***
-_________________________________________________________ -->
-                <div class="panel panel-default sidebar-menu">
 
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Customer section</h3>
-                    </div>
-
-                    <div class="panel-body">
-
-                        <ul class="nav nav-pills nav-stacked">
-                            <li class="active">
-                                <a href="customer-orders.html"><i class="fa fa-list"></i> My orders</a>
-                            </li>
-                            <li>
-                                <a href="customer-wishlist.html"><i class="fa fa-heart"></i> My wishlist</a>
-                            </li>
-                            <li>
-                                <a href="customer-account.html"><i class="fa fa-user"></i> My account</a>
-                            </li>
-                            <li>
-                                <a href="index.html"><i class="fa fa-sign-out"></i> Logout</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- /.col-md-3 -->
-
-                <!-- *** CUSTOMER MENU END *** -->
-            </div>
-
-            <!-- *** RIGHT COLUMN END *** -->
+        @include('customers.includes.customer_menu')
 
         </div>
 

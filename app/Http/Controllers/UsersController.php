@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Order;
 use Auth;
 
 
@@ -11,10 +12,13 @@ class UsersController extends Controller
 {
     public function account () {
         $user = Auth::user();
+        $address = $user->address;
         //dd($user->admin);
         $currentRoute = Route::currentRouteName();
         if($user->admin != 1) {
-            return view('customers.account')->with('currentRoute', $currentRoute);
+            return view('customers.account')->with('currentRoute', $currentRoute)
+            ->with('user', $user)
+            ->with('address', $address);
         }
         return view('admin.dashboard');
     }
@@ -39,15 +43,20 @@ class UsersController extends Controller
     public function orders()
     {
         $user = Auth::user();
+        $orders = $user->orders;
         $currentRoute = Route::currentRouteName();
-        return view('customers.orders')->with('currentRoute', $currentRoute);
+        return view('customers.orders')->with('currentRoute', $currentRoute)
+        ->with('orders', $orders);
     }
 
-    public function order_details()
+    public function order_details($id)
     {
+        $orders = Order::find($id);
         $user = Auth::user();
         $currentRoute = Route::currentRouteName();
-        return view('customers.order_details')->with('currentRoute', $currentRoute);
+        return view('customers.order_details')->with('currentRoute', $currentRoute)
+        ->with('orders', $orders)
+        ->With('user', $user);
     }
 
     /**

@@ -32,7 +32,7 @@ _________________________________________________________ -->
 
             <p class="lead">{{ $product->description }}
             </p>
-            <p class="goToDescription"><a href="#details" class="scroll-to text-uppercase">Scroll to product details, material & care and sizing</a>
+            <p class="goToDescription"><a href="#details" class="scroll-to text-uppercase">Scroll ke bawah untuk melihat detail produk</a>
             </p>
 
             <div class="row" id="productMain">
@@ -77,12 +77,17 @@ _________________________________________________________ -->
 
                             </div> -->
 
-                            <p class="price">$ {{ $product->price }}</p>
+                            <p class="price">IDR {{ $product->price }}</p>
 
                             <p class="text-center">
-                                <button type="submit" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i> Add to cart</button>
-                                <!-- <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Add to wishlist"><i class="fa fa-heart-o"></i>
+                                <!-- <button type="submit" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i> Add to cart</button>
+                                <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Add to wishlist"><i class="fa fa-heart-o"></i>
                                 </button> -->
+                                <form action="{{ route('cart.add') }}" method="post">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <button class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                </form>
                             </p>
 
                         </form>
@@ -112,7 +117,7 @@ _________________________________________________________ -->
 
             <div class="box" id="details">
                 <p>
-                    <h4>Product details</h4>
+                    <h4>DETAIL PRODUK</h4>
                     <p>{{ $product->description }}</p>
                     <!-- <h4>Material & care</h4>
                     <ul>
@@ -144,7 +149,7 @@ _________________________________________________________ -->
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="box text-uppercase">
-                        <h3>You may also like these products</h3>
+                        <h3>Mungkin anda tertarik dengan produk berikut</h3>
                     </div>
                 </div>
                 @foreach($category->products->take(3) as $similiar_product)
@@ -157,7 +162,7 @@ _________________________________________________________ -->
                         </div>
                         <div class="text">
                             <h3>{{ $similiar_product->name }}</h3>
-                            <p class="price">${{ $similiar_product->price }}</p>
+                            <p class="price">IDR {{ $similiar_product->price }}</p>
 
                         </div>
                     </div>

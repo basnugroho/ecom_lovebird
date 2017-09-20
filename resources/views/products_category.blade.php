@@ -76,7 +76,7 @@ _________________________________________________________ -->
 
             <div class="col-sm-9">
 
-                <p class="text-muted lead">In our Ladies department we offer wide selection of the best products we have found and carefully selected worldwide. Pellentesque habitant morbi tristique senectus et netuss.</p>
+                <p class="text-muted lead">{{ $category->description }}</p>
 
                 <div class="row products">
                     @foreach($products as $product)
