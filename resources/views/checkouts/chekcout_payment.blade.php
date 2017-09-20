@@ -50,7 +50,7 @@
 
                                         <div class="box-footer text-center">
 
-                                            <input type="radio" name="payment" value="payment1">
+                                            <input type="radio" name="payment" value="Transfer BCA">
                                         </div>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
 
                                         <div class="box-footer text-center">
 
-                                            <input type="radio" name="payment" value="payment2">
+                                            <input type="radio" name="payment" value="Bayar Ditempat">
                                         </div>
                                     </div>
                                 </div>

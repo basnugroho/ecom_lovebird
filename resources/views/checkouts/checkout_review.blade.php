@@ -44,16 +44,16 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th colspan="2">Product</th>
-                                    <th>Quantity</th>
-                                    <th>Unit price (Rp)</th>
-                                    <th colspan="2">Total</th>
+                                    <th colspan="2">Barang</th>
+                                    <th>Jumlah</th>
+                                    <th>Harga Jual (IDR)</th>
+                                    <th>Total (tanpa ongkir)</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {{ csrf_field() }}
                                 <input type="hidden" name="user_id" value={{ Auth::user()->id }}>
-                                <input type="hidden" name="delivery_method" value='ambil'>
+                                <input type="hidden" name="delivery_method" value='{{ Session::get('delivery_method') }}'>
                                 @foreach(Cart::content() as $product)
                                 <tr>
                                     <td>
@@ -62,30 +62,28 @@
                                         </a>
                                     </td>
                                     <td>
+                                        <input type="hidden" name="product_id[]" value="{{ $product->id }}">
                                         <a href="#">{{ $product->name }}</a>
                                     </td>
                                     <td>
-                                        <input type="hidden" name="product_id[]" value="{{ $product->id }}">
-                                        <input name="qty[]" class="small" type="number" value="{{ $product->qty }}" class="form-control">
+                                        <input name="qty[]" class="small" type="hidden" value="{{ $product->qty }}" class="form-control">
+                                        {{ $product->qty }}
                                     </td>
                                     <td>
                                         <input type="hidden" name="selling_price[]" value="{{ $product->price }}">
                                         {{ $product->price() }}
                                     </td>
                                     <td>
-                                        {{ $product->total() }}
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('cart.delete', ['row_id' => $product->rowId] ) }}"><i class="fa fa-trash-o"></i></a>
+                                        {{ $product->total() * 1000.00}}
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th colspan="5">Total</th>
+                                    <th colspan="4">Total</th>
                                     <input type="hidden" name="total" value="{{ Cart::total() }}">
-                                    <th colspan="2">{{ Cart::total() }}</th>
+                                    <th colspan="1">{{ Cart::total() * 1000}}</th>
                                 </tr>
                             </tfoot>
                         </table>

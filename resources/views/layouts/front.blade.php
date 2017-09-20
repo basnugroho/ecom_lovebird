@@ -587,15 +587,21 @@ _________________________________________________________ -->
             toastr.info('{{ Session::get('info') }}')
         @endif
 
-        @if(Session::has('ongkir'))
-            toastr.info('{{ Session::get('ongkir') }}')
-        @endif
-        @if(Session::has('delivery_id'))
-            toastr.info('{{ Session::get('delivery_id') }}')
-        @endif
-        @if(Session::has('service'))
-            toastr.info('{{ Session::get('service') }}')
-        @endif
+        // @if(Session::has('delivery_method'))
+        //     toastr.info('{{ Session::get('delivery_method') }}')
+        // @endif
+
+        // @if(Session::has('service'))
+        //     toastr.info('{{ Session::get('service') }}')
+        // @endif
+
+        // @if(Session::has('ongkir'))
+        //     toastr.info('{{ Session::get('ongkir') }}')
+        // @endif
+
+        // @if(Session::has('payment'))
+        //     toastr.info('{{ Session::get('payment') }}')
+        // @endif
     </script>
     @yield('scripts')
 

@@ -49,7 +49,7 @@
                                         <p>Barang Diambil di lokasi distributor.</p>
 
                                         <div class="box-footer text-center">
-                                            <input type="radio" name="delivery" value="take">
+                                            <input type="radio" name="delivery_method" value="take away">
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
                                         <h4>JNE</h4>
                                         <p>Menggunakan JNE.</p>
                                         <div class="box-footer text-center">
-                                            <input type="radio" name="delivery" value="jne">
+                                            <input type="radio" name="delivery_method" value="jne">
                                         </div>
                                     </div>
                                 </div>

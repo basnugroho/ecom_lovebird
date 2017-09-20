@@ -106,23 +106,21 @@
                                 <div class="col-sm-6 col-md-3">
                                     <div class="form-group">
                                         <label for="courier">Kurir</label>
-                                        <select class="form-control" id="courier" name="delivery_id" required>
-                                            <option value="">Silahkan Pilih</option>
-                                            <option {{ $delivery == "jne" ? 'selected' : '' }} value="jne">JNE</option>
+                                        <select class="form-control" id="courier" name="delivery_method" required readonly>
+                                            <!-- <option value="">Silahkan Pilih</option> -->
+                                            <option {{ $delivery_method == "jne" ? 'selected' : '' }} value="jne">JNE</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-3">
                                     <div class="form-group layanan">
-                                        <label for="delivery">Layanan</label>
+                                        <label for="delivery">Jenis Layanan</label>
                                         <select class="form-control" id="service" name="service" required>
                                             <option>Silahkan Pilih Layanan</option>
                                         </select>
                                         <input type="text" name="ongkir" id="ongkir" value="" readonly>
                                     </div>
                                 </div>
-                                
-
                             </div>
                             <!-- /.row -->
                         </div>
@@ -275,9 +273,13 @@
                     console.log(cost);
                     
                     try {
-                        var ongkir = $('input#ongkir').val(cost);
-                        $('#ongkirSummary').val(cost);
-                        console.log(ongkir);
+                        var ongkir = $('input#ongkir').val(numberWithCommas(cost));
+                        var subtotal = $('input#subtotalSummary').val();
+                        $('#ongkirSummary').html(cost);
+
+                        var total = (subtotal*1000 + cost*1000)/1000;
+                        $("th#totalSummary").html(total);
+                        //console.log(ongkir);
                     }
                     catch(err) {
                         var ongkir = $('input#ongkir').val("error, ongkir tidak tersedia");
@@ -289,5 +291,9 @@
 
 
     });
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }   
 </script>
 @stop

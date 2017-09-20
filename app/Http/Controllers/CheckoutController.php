@@ -11,6 +11,8 @@ use Auth;
 use App\User;
 use App\Address;
 use App\Order;
+use App\Order_Product;
+use Mail;
 
 class CheckoutController extends Controller
 {
@@ -33,11 +35,15 @@ class CheckoutController extends Controller
 
         $currentRoute = Route::currentRouteName();
         $user = Auth::user();
-        if($request->delivery == "jne") {
+        if($request->delivery_method == "jne") {
+            $request->session()->put('delivery_method', $request->delivery_method);
+            Session::flash('info', 'Anda memilih metode pengiriman '.$request->delivery_method);
             return view('checkouts.checkout_address')->with('currentRoute', $currentRoute)
-            ->with('delivery', $request->delivery)
+            ->with('delivery_method', $request->delivery_method)
             ->with('user', $user);
         }
+        $request->session()->put('delivery_method', $request->delivery_method);
+        Session::flash('info', 'Anda memilih metode pengiriman '.$request->delivery_method);
         return view('checkouts.chekcout_payment')->with('currentRoute', $currentRoute);
     }
 
@@ -55,7 +61,6 @@ class CheckoutController extends Controller
             $address->country = $request->country;
             $address->phone = $request->phone;
             $request->session()->put('ongkir', $request->ongkir);
-            $request->session()->put('delivery_id', $request->delivery_id);
             $request->session()->put('service', $request->service);
             $address->save();
             Session::flash('info', 'info alamat telah disimpan!');
@@ -65,30 +70,58 @@ class CheckoutController extends Controller
     }
     public function checkoutReview (Request $request) {
         $request->session()->put('payment', $request->payment);
+        Session::flash('info', 'anda memilih pembayaran '.$request->payment);
         $currentRoute = Route::currentRouteName();
         return view('checkouts.checkout_review')->with('currentRoute', $currentRoute);
     }
 
     public function checkoutPay (Request $request) {
-        //dd($request->all());
+        $quantities = $request->get('qty');
+        $selling_prices = $request->get('selling_price');
+        $product_id = $request->get('product_id');
+
+        $service = Session::get('service');
+        $delivery_cost = Session::get('ongkir');
+
         $order = Order::create([
             'status' => 'not paid',
             'user_id' => $request->user_id,
             'delivery_method' => $request->delivery_method,
+            'delivery_service' => $service,
+            'delivery_cost' => $delivery_cost*1000,
+            // 'payment_method' => $request->payment,
             'total' => $request->total
         ]);
-        
-        $selling_prices = json_encode($request->selling_price);
-        $quantities = json_encode($request->qty);
 
-        $order->products()->attach(
-            $request->product_id,
-            [
-            'selling_price' => $selling_prices,
-            'quantity' => $quantities
-            ]
-        );
+        for($i = 0; $i < sizeOf($product_id); $i++) {
+            $order_product = Order_Product::create([
+                'order_id' => $order->id,
+                'product_id' => $product_id[$i],
+                'selling_price' => $selling_prices[$i],
+                'quantity' => $quantities[$i]
+            ]);
+        }
 
+        $user = User::find($request->user_id);
+        $total = $request->total;
+        if ($ongkir = Session::has('ongkir')) {
+            $total = ($total*1000) + Session::get('ongkir')*1000;
+        } 
+
+        $data = [
+            'order' => Order::find($order->id),
+            'user' => $user,
+            'total' => $total
+        ];
+    
+        //send invoice
+        Mail::send('emails.invoice', $data, function ($m) use ($user){
+            $m->from('s6134117@student.ubaya.ac.id', 'BMW Master Surabaya');
+
+            $m->to($user->email, $user->name)->subject('Tagihan Pesanan');
+        });
+        Cart::destroy();
+        Session::flash('info', 'silahkan cek email untuk petunjuk pembayaran');
         return redirect()->route('front');
     }
 }

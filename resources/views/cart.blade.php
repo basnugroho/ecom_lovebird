@@ -70,7 +70,7 @@
                                 <tfoot>
                                     <tr>
                                         <th colspan="5">Total</th>
-                                        <th colspan="2">{{ Cart::total() }}</th>
+                                        <th colspan="2">{{ Cart::total()*1000 }}</th>
                                     </tr>
                                 </tfoot>
                             </table>

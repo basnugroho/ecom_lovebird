@@ -160,4 +160,9 @@ Route::get('/services', [
     'as' => 'ongkir.services'
 ]);
 
+use Illuminate\Support\Facades\Route;
 
+Route::get('/email', [
+    'uses' => 'MailsController@sendInvoice',
+    'as' => 'email.invoice'
+]);

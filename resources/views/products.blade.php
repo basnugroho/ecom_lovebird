@@ -87,7 +87,7 @@ _________________________________________________________ -->
                             <!-- /.image -->
                             <div class="text">
                                 <h3><a href="shop-detail.html">{{ $product->name }}</a></h3>
-                                <p class="price">$ {{ $product->price }}</p>
+                                <p class="price">IDR {{ $product->price }}</p>
                                 <p class="text">
                                     <a href="{{ route('front.detail', ['c_id' => $category->id, 'p_id' => $product->id ]) }}" class="btn btn-default">Detail</a>
                                     <form action="{{ route('cart.add') }}" method="post">
