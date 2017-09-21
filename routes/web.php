@@ -122,6 +122,7 @@ Route::get('/admin/profile', [
 Route::resource('admin/categories', 'Admin\\CategoriesController');
 Route::resource('admin/products', 'Admin\\ProductsController');
 Route::resource('admin/customers', 'Admin\\CustomersController');
+Route::resource('admin/orders', 'Admin\\OrdersController');
 
 Route::get('/customer/login', [
     'uses' => 'UsersController@login',
@@ -160,7 +161,6 @@ Route::get('/services', [
     'as' => 'ongkir.services'
 ]);
 
-use Illuminate\Support\Facades\Route;
 
 Route::get('/email', [
     'uses' => 'MailsController@sendInvoice',

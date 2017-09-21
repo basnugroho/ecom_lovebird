@@ -19,7 +19,7 @@
                     <a href="{{ route('categories.index') }}">
                         Kategori Produk
                     </a>
-                    <a href="">
+                    <a href="{{ route('orders.index') }}">
                         Pesanan
                     </a>
                     <a href="">
