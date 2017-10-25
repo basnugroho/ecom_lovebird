@@ -10,18 +10,18 @@
                 <tbody>
                     <tr>
                         <td>Subtotal pemesanan</td>
-                        <th id="">{{ Cart::total() * 1000 }}</th>
+                        <th id="">Rp{{ number_format(Cart::total() *1000,2,',', '.')}}</th>
                         <form action="">
-                            <input type="hidden" id='subtotalSummary' value='{{ Cart::total() * 1000 }}'>
+                            <input type="hidden" id='subtotalSummary' value='{{ Round(1000*Cart::total(),2) }}'>
                         </form>
                     </tr>
                     <tr>
                         <td>Ongkos kirim</td>
-                        <th id="ongkirSummary">{{ Session::has('ongkir') ? Session::get('ongkir') * 1000 : '' }}</th>
+                        <th id="ongkirSummary">Rp{{ Session::has('ongkir') ? number_format(Session::get('ongkir'),2,',', '.'): '' }}</th>
                     </tr>
                     <tr class="total">
                         <td>Total</td>
-                        <th id="totalSummary">{{ Cart::total() *1000 +  Session::get('ongkir') * 1000 }}</th>
+                        <th id="totalSummary">Rp{{ number_format(strval(1000*Cart::total()) +  strval(Session::get('ongkir')),2,',','.') }}</th>
                     </tr>
                 </tbody>
             </table>

@@ -57,7 +57,7 @@ _________________________________________________________ -->
                 <div class="col-sm-6">
                     <div class="box">
 
-                        <form>
+                        
                             <!-- <div class="sizes">
 
                                 <h3>Available sizes</h3>
@@ -77,7 +77,7 @@ _________________________________________________________ -->
 
                             </div> -->
 
-                            <p class="price">IDR {{ $product->price }}</p>
+                            <p class="price">Rp{{ number_format($product->price, 0, ",", ".") }}</p>
 
                             <p class="text-center">
                                 <!-- <button type="submit" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i> Add to cart</button>
@@ -90,7 +90,7 @@ _________________________________________________________ -->
                                 </form>
                             </p>
 
-                        </form>
+                        
                     </div>
 
                     <div class="row" id="thumbs">

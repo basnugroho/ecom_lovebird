@@ -44,7 +44,7 @@ _________________________________________________________ -->
                                 <ul>
                                     @foreach($category->products as $product)
                                     <li>
-                                        <a href="{{ route('front.detail', ['c_id' => $category->id, 'p_id' => $product->id ]) }}">{{ $product->name }}</a>
+                                        <a href="{{ route('front.detail', ['c_id' => $product->category->id, 'p_id' => $product->id ]) }}">{{ $product->name }}</a>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -73,7 +73,7 @@ _________________________________________________________ -->
 
             <div class="col-sm-9">
 
-                <p class="text-muted lead">In our Ladies department we offer wide selection of the best products we have found and carefully selected worldwide. Pellentesque habitant morbi tristique senectus et netuss.</p>
+                <p class="text-muted lead">BMW Master Indonesia menyediakan berbagai macam kebutuhan burung berkicau anda.</p>
 
                 <div class="row products">
                     @foreach($products as $product)
@@ -87,7 +87,7 @@ _________________________________________________________ -->
                             <!-- /.image -->
                             <div class="text">
                                 <h3><a href="shop-detail.html">{{ $product->name }}</a></h3>
-                                <p class="price">IDR {{ $product->price }}</p>
+                                <p class="price">Rp{{ number_format($product->price, 2, ",", ".") }}</p>
                                 <p class="text">
                                     <a href="{{ route('front.detail', ['c_id' => $category->id, 'p_id' => $product->id ]) }}" class="btn btn-default">Detail</a>
                                     <form action="{{ route('cart.add') }}" method="post">

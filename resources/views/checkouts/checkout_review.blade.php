@@ -46,8 +46,8 @@
                                 <tr>
                                     <th colspan="2">Barang</th>
                                     <th>Jumlah</th>
-                                    <th>Harga Jual (IDR)</th>
-                                    <th>Total (tanpa ongkir)</th>
+                                    <th>Harga Jual</th>
+                                    <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -71,10 +71,10 @@
                                     </td>
                                     <td>
                                         <input type="hidden" name="selling_price[]" value="{{ $product->price }}">
-                                        {{ $product->price() }}
+                                        Rp{{ $product->price() }}
                                     </td>
                                     <td>
-                                        {{ $product->total() * 1000.00}}
+                                        Rp{{ $product->total() }}
                                     </td>
                                 </tr>
                                 @endforeach
@@ -83,7 +83,7 @@
                                 <tr>
                                     <th colspan="4">Total</th>
                                     <input type="hidden" name="total" value="{{ Cart::total() }}">
-                                    <th colspan="1">{{ Cart::total() * 1000}}</th>
+                                    <th colspan="1">Rp{{ Cart::total() }}</th>
                                 </tr>
                             </tfoot>
                         </table>

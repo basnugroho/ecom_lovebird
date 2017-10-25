@@ -1,5 +1,6 @@
 @extends('layouts.front')
 @section('content')
+
 <div id="heading-breadcrumbs">
     <div class="container">
         <div class="row">
@@ -76,7 +77,7 @@ _________________________________________________________ -->
 
             <div class="col-sm-9">
 
-                <p class="text-muted lead">{{ $category->description }}</p>
+                <p class="text-muted lead">{{ $category_find->description }}</p>
 
                 <div class="row products">
                     @foreach($products as $product)
@@ -84,16 +85,20 @@ _________________________________________________________ -->
                         <div class="product">
                             <div class="image">
                                 <a href="shop-detail.html">
-                                    <img src="{{ asset('universal/img/product1.jpg') }}" alt="" class="img-responsive image1">
+                                    <img src="{{ asset($product->image) }}" alt="" class="img-responsive image1">
                                 </a>
                             </div>
                             <!-- /.image -->
                             <div class="text">
                                 <h3><a href="shop-detail.html">{{ $product->name }}</a></h3>
-                                <p class="price">$ {{ $product->price }}</p>
+                                <p class="price">Rp{{ number_format($product->price, 0, ",", ".") }}</p>
                                 <p class="text">
-                                    <a href="{{ route('front.detail', ['c_id' => $category->id, 'p_id' => $product->id ]) }}" class="btn btn-default">Detail</a>
-                                    <a href="shop-basket.html" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    <a href="{{ url('category/'.$category->id.'/'.$product->id ) }}" class="btn btn-default">Detail</a>
+                                    <form action="{{ route('cart.add') }}" method="post">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                        <button class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                    </form>
                                 </p>
                             </div>
                             <!-- /.text -->

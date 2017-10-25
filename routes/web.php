@@ -88,9 +88,12 @@ Route::post('/checkout/pay', [
 ]);
 
 
-Route::get('/category/{c_id}/product/{p_id}', [
+Route::get('/category/{c_id}/{p_id}', [
     'uses' => 'FrontEndController@detail',
     'as' => 'front.detail'
+]);
+Route::post('/category/{c_id}/{p_id}', [
+    'uses' => 'ShoppingController@addToCart'
 ]);
 Route::get('/category/{id}', [//by category
     'uses' => 'FrontEndController@findByCategory',

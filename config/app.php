@@ -12,7 +12,8 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'Admin Panel'),
+    //'name' => env('APP_NAME', 'Admin Panel'),
+    'name' => 'BMW Master Indonesia',
 
     /*
     |--------------------------------------------------------------------------

@@ -30,7 +30,8 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Admin Panel') }}
+                        <!-- {{ config('app.name', 'Admin Panel') }} -->
+                        BMW Master Indonesia
                     </a>
                 </div>
 

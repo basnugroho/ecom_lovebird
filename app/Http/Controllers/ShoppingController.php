@@ -16,12 +16,13 @@ class ShoppingController extends Controller
     }
 
     public function addToCart (Request $request) {
-        //dd($request->all());
+        
         $product = Product::find($request->product_id);
+        $productPrice= $product->price;
         $cartItem = Cart::add([
             'id' => $product->id,
             'name' => $product->name,
-            'price' => $product->price,
+            'price' => $productPrice,
             'qty' => 1,
         ]);
         Cart::associate($cartItem->rowId, 'App\Product');

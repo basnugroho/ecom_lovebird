@@ -37,9 +37,9 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th colspan="2">Product</th>
-                                        <th>Quantity</th>
-                                        <th>Unit price (Rp)</th>
+                                        <th colspan="2">Nama Produk</th>
+                                        <th>Kuantitas</th>
+                                        <th>Harga Barang</th>
                                         <th colspan="2">Total</th>
                                     </tr>
                                 </thead>
@@ -59,8 +59,8 @@
                                             <input type="hidden" name="row_id[]" value="{{ $product->rowId }}">
                                             <input name="qty[]" class="small" type="number" value="{{ $product->qty }}" class="form-control">
                                         </td>
-                                        <td>{{ $product->price() }}</td>
-                                        <td>{{ $product->total() }}</td>
+                                        <td>Rp{{ $product->price() }}</td>
+                                        <td>Rp{{ $product->total() }}</td>
                                         <td>
                                             <a href="{{ route('cart.delete', ['row_id' => $product->rowId] ) }}"><i class="fa fa-trash-o"></i></a>
                                         </td>
@@ -69,8 +69,8 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th colspan="5">Total</th>
-                                        <th colspan="2">{{ Cart::total()*1000 }}</th>
+                                        <th colspan="4">Total</th>
+                                        <th colspan="2">{{ Cart::total() }}</th>
                                     </tr>
                                 </tfoot>
                             </table>

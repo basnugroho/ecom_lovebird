@@ -55,6 +55,7 @@ class FrontEndController extends Controller
      */
     public function findByCategory($id)
     {
+        //echo $id;exit();
         $currentRoute = Route::currentRouteName();
         $categories = Category::all();
         $category_find = Category::find($id);

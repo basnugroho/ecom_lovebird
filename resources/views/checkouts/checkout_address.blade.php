@@ -272,16 +272,17 @@
                     var cost = json["rajaongkir"]["results"][0]['costs'][service_id]['cost'][0]['value']; //['costs'][id]             
                     console.log(cost);
                     
-                    try {
-                        var ongkir = $('input#ongkir').val(numberWithCommas(cost));
-                        var subtotal = $('input#subtotalSummary').val();
-                        $('#ongkirSummary').html(cost);
+                    if(cost) {
+                        var ongkir = $('input#ongkir').val(cost);
 
-                        var total = (subtotal*1000 + cost*1000)/1000;
-                        $("th#totalSummary").html(total);
+                        var subtotal =parseInt($('input#subtotalSummary').val());
+                        $('#ongkirSummary').html(cost);
+                        
+                        subtotal += cost;
+                        $("#totalSummary").html(subtotal);
                         //console.log(ongkir);
                     }
-                    catch(err) {
+                    else {
                         var ongkir = $('input#ongkir').val("error, ongkir tidak tersedia");
                         console.log(ongkir);
                     }
