@@ -105,7 +105,7 @@ class CheckoutController extends Controller
         $user = User::find($request->user_id);
         $total = $request->total;
         if ($ongkir = Session::has('ongkir')) {
-            $total = ($total) + Session::get('ongkir');
+            $total = ($total) + strval(Session::get('ongkir')/1000);
         } 
 
         $data = [

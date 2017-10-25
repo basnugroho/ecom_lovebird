@@ -173,11 +173,11 @@
       <table>
         <thead>
           <tr>
-            <th class="service">Barang</th>
+            <th class="service">Nama Produk</th>
             <th class="desc"></th>
-            <th>HARGA JUAL</th>
-            <th>JUMLAH</th>
-            <th>TOTAL</th>
+            <th>Harga Jual</th>
+            <th>Jumlah</th>
+            <th>Total</th>
           </tr>
         </thead>
         <tbody>
@@ -185,22 +185,22 @@
           <tr>
             <td class="service"><img height="40" src="{{ asset($product->model->image) }}" alt="{{ $product->rowId }}"></td>
             <td class="desc">{{ $product->name }}</td>
-            <td class="unit">{{ $product->price()*1000 }}</td>
+            <td class="unit">{{ $product->price() }}</td>
             <td class="qty">{{ $product->qty }}</td>
-            <td class="total">{{ $product->total()*1000 }}</td>
+            <td class="total">Rp{{ $product->total()}}</td>
           </tr>
         @endforeach
           <tr>
-            <td colspan="4">SUBTOTAL</td>
-            <td class="total">{{ Cart::total()*1000 }}</td>
+            <td colspan="4">Subtotal</td>
+            <td class="total">Rp{{ Cart::total() }}</td>
           </tr>
           <tr>
-            <td colspan="4">ONGKOS KIRIM</td>
-            <td class="total">{{ Session::has('ongkir') ? Session::get('ongkir')*1000 : 'diambil ditempat' }}</td>
+            <td colspan="4">Ongkos Kirim</td>
+            <td class="total">{{ Session::has('ongkir') ? 'Rp'.number_format(strval(Session::get('ongkir')), 2, ',', '.') : 'diambil ditempat' }}</td>
           </tr>
           <tr>
-            <td colspan="4" class="grand total">TOTAL</td>
-            <td class="grand total">{{ $total }}</td>
+            <td colspan="4" class="grand total">Total</td>
+            <td class="grand total">Rp{{ number_format(strval($total*1000), 2, ',', '.') }}</td>
           </tr>
         </tbody>
       </table>
@@ -225,16 +225,16 @@
         </tbody>
       </table>
         <div id="notices">
-            <div>CATATAN:</div>
+            <div><b>Catatan:</b></div>
             <div class="notice">
-                <b>Harap melakukan konfirmasi pada kontak diatas dengan format:</b><br>
-                sudah_bayar#(metode pembayaran)#nomor_pesanan</br>
+                <small>Harap melakukan konfirmasi pada kontak diatas dengan format:<br>
+                sudah_bayar#(metode pembayaran)#nomor_pesanan</small></br>
                 <small>contoh: sudah_bayar#(Transfer Bank)#16</small><br>
             </div>
         </div>
     </main>
     <footer>
-      Tagihan ini dibuat secara otomatis oleh bmwmastersby.com dan valid.
+      Tagihan ini dibuat secara otomatis sebagai nota pembayaran yang valid oleh bmwmasterindonesia.com
     </footer>
   </body>
 </html>

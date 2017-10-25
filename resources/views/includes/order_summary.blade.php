@@ -16,9 +16,14 @@
                         </form>
                     </tr>
                     <tr>
-                        <td>Ongkos kirim</td>
+                        <td>Berat Total</td>
+                        <th id="ongkirSummary"></th>
+                    </tr>
+                    <tr>
+                        <td>Total Ongkos kirim</td>
                         <th id="ongkirSummary">Rp{{ Session::has('ongkir') ? number_format(Session::get('ongkir'),2,',', '.'): '' }}</th>
                     </tr>
+
                     <tr class="total">
                         <td>Total</td>
                         <th id="totalSummary">Rp{{ number_format(strval(1000*Cart::total()) +  strval(Session::get('ongkir')),2,',','.') }}</th>

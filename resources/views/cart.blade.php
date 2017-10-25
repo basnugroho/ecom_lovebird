@@ -39,6 +39,7 @@
                                     <tr>
                                         <th colspan="2">Nama Produk</th>
                                         <th>Kuantitas</th>
+                                        <th>Berat(gram)</th>
                                         <th>Harga Barang</th>
                                         <th colspan="2">Total</th>
                                     </tr>
@@ -46,6 +47,7 @@
                                 <tbody>
                                     <form action="{{ route('cart.update') }}" action="get">
                                     @foreach(Cart::content() as $product)
+ 
                                     <tr>
                                         <td>
                                             <a href="#">
@@ -59,6 +61,7 @@
                                             <input type="hidden" name="row_id[]" value="{{ $product->rowId }}">
                                             <input name="qty[]" class="small" type="number" value="{{ $product->qty }}" class="form-control">
                                         </td>
+                                        <td>{{ $product->options->weight }}</td>
                                         <td>Rp{{ $product->price() }}</td>
                                         <td>Rp{{ $product->total() }}</td>
                                         <td>

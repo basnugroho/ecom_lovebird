@@ -273,13 +273,14 @@
                     console.log(cost);
                     
                     if(cost) {
-                        var ongkir = $('input#ongkir').val(cost);
+                        var ongkir = $('input#ongkir').val(cost+'/Kg');
 
-                        var subtotal =parseInt($('input#subtotalSummary').val());
-                        $('#ongkirSummary').html(cost);
+                        var subtotal=parseInt($('input#subtotalSummary').val());
+                        $('#ongkirSummary').html(new Intl.NumberFormat(['ban', 'id']).format(cost));
                         
                         subtotal += cost;
-                        $("#totalSummary").html(subtotal);
+
+                        $("#totalSummary").html(new Intl.NumberFormat(['ban', 'id']).format(subtotal));
                         //console.log(ongkir);
                     }
                     else {

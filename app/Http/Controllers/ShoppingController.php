@@ -10,21 +10,29 @@ use Session;
 
 class ShoppingController extends Controller
 {
+    
     public function cart () {
         $currentRoute = Route::currentRouteName();
         return view ('cart')->with('currentRoute', $currentRoute);
+        //->with('berat_total', $beratTotal);
     }
 
     public function addToCart (Request $request) {
-        
         $product = Product::find($request->product_id);
+        //dd($product);
         $productPrice= $product->price;
         $cartItem = Cart::add([
             'id' => $product->id,
             'name' => $product->name,
             'price' => $productPrice,
             'qty' => 1,
+            'options' => ['weight'=>$product->weight]
         ]);
+        static $beratTotal = 0;
+        foreach($cartItem as $product) {
+            $beratTotal += $product->options->weight;
+        }
+        dd($berat_total);
         Cart::associate($cartItem->rowId, 'App\Product');
         Session::flash('success', 'produk telah ditambahkan dalam cart');
         return redirect()->back();
@@ -33,7 +41,7 @@ class ShoppingController extends Controller
     }
 
     public function cartUpdate (Request $request) {
-        //dd($request->all());
+        dd($request->all());
         $rowId = $request->row_id;
         $qty = $request->qty;
         for($i = 0; $i < count($rowId); $i++) {
