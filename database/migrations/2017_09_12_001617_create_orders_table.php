@@ -16,16 +16,16 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->enum('status', ['not paid', 'paid', 'ready to take', 'sending', 'done']);
-            $table->string('receipt')->nullable();
             $table->integer('user_id')->unsigned()->index();
             $table->enum('delivery_method', ['take away', 'jne']);
             $table->integer('delivery_service')->nullable();
             $table->bigInteger('delivery_cost')->nullable();
+            $table->bigInteger('weight_total')->nullable();
+            $table->bigInteger('delivery_cost_total')->nullable();
+            $table->string('sub_total');
             $table->string('total');
-            $table->enum('payment_method', ['not paid', 'cash', 'BCA']);
-            
+            $table->string('payment_method');   
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            //$table->foreign('delivery_id')->references('id')->on('deliveries');
             $table->timestamps();
         });
     }

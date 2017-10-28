@@ -9,7 +9,7 @@
             <div class="col-md-5">
                 <ul class="breadcrumb">
                     <li>
-                        <a href="{{ route('front') }}">Home</a>
+                        <a href="{{ route('front') }}">Beranda</a>
                     </li>
                 </ul>
             </div>

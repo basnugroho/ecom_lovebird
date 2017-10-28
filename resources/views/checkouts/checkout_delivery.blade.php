@@ -4,13 +4,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-                <h1>Checkout - Delivery method</h1>
+                <h1>Checkout - Metode Pengiriman</h1>
             </div>
             <div class="col-md-5">
                 <ul class="breadcrumb">
-                    <li><a href="index.html">Home</a>
+                    <li><a href="index.html">Beranda</a>
                     </li>
-                    <li>Checkout - Delivery method</li>
+                    <li>Checkout - Metode Pengiriman</li>
                 </ul>
 
             </div>
@@ -29,9 +29,9 @@
                     <form method="post" action="{{ route('checkout.address') }}">
                         {{ csrf_field() }}
                         <ul class="nav nav-pills nav-justified">
-                            <li class="active"><a href=""><i class="fa fa-truck"></i><br>Pengiriman</a>
+                            <li class="active"><a href=""><i class="fa fa-truck"></i><br>Metode Pengiriman</a>
                             </li>
-                            <li class="disabled"><a href=""><i class="fa fa-map-marker"></i><br>Alamat</a>
+                            <li class="disabled"><a href=""><i class="fa fa-map-marker"></i><br>Alamat Kirim</a>
                             </li>
                             <li class="disabled"><a href="#"><i class="fa fa-money"></i><br>Pembayaran</a>
                             </li>

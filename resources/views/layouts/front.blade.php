@@ -56,7 +56,7 @@ _________________________________________________________ -->
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-5 contact">
-                            <p class="hidden-sm hidden-xs">Hubungi Kami: +62 777 555 333 atau admin@bmwmaster.com</p>
+                            <p class="hidden-sm hidden-xs">Hubungi Kami: +62 777 555 333 atau admin@bmwmasterindonesia.com</p>
                             <p class="hidden-md hidden-lg"><a href="#" data-animate-hover="pulse"><i class="fa fa-phone"></i></a>  <a href="#" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
                             </p>
                         </div>
@@ -124,7 +124,7 @@ _________________________________________________________ -->
                                         </li>
                                         <li>
                                             <a href="{{ route('customer.orders') }}">
-                                            Pesanan
+                                            Riwayat Order
                                             </a>
                                         </li>
                                         <li>
@@ -141,7 +141,7 @@ _________________________________________________________ -->
                                 </li>
                                 @endif
                                 <li onclick="location.href='{{ route('cart') }}';" class="dropdown {{ $currentRoute == 'cart' ? 'active' : ''}}">
-                                <a href="{{ route('cart') }}" class="dropdown-toggle" data-toggle="dropdown">Cart <span class="badge">{{ Cart::count() }}</span></a>
+                                <a href="{{ route('cart') }}" class="dropdown-toggle" data-toggle="dropdown">Troli <span class="badge">{{ Cart::count() }}</span></a>
                                 </li>
                                 <!-- ========== FULL WIDTH MEGAMENU ================== -->
                                 <!-- <li class="dropdown use-yamm yamm-fw">

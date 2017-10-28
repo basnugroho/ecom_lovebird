@@ -4,13 +4,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-                <h1>Checkout - Address</h1>
+                <h1>Checkout - Alamat Kirim</h1>
             </div>
             <div class="col-md-5">
                 <ul class="breadcrumb">
-                    <li><a href="index.html">Home</a>
+                    <li><a href="index.html">Beranda</a>
                     </li>
-                    <li>Checkout - Address</li>
+                    <li>Checkout - Alamat Kirim</li>
                 </ul>
 
             </div>
@@ -121,6 +121,9 @@
                                         <input type="text" name="ongkir" id="ongkir" value="" readonly>
                                     </div>
                                 </div>
+                                <input type="hidden" name="berat_total" id="berat_total" value="{{ $berat_total }}" readonly>
+                                <input type="hidden" name="biaya_kirim" id="ongkir" value="">
+                                <input type="hidden" name="ongkir_total" id="ongkir_total" value="">
                             </div>
                             <!-- /.row -->
                         </div>
@@ -274,14 +277,20 @@
                     
                     if(cost) {
                         var ongkir = $('input#ongkir').val(cost+'/Kg');
-
+                        var berat_total = $('#berat_total').val();
                         var subtotal=parseInt($('input#subtotalSummary').val());
-                        $('#ongkirSummary').html(new Intl.NumberFormat(['ban', 'id']).format(cost));
-                        
-                        subtotal += cost;
-
-                        $("#totalSummary").html(new Intl.NumberFormat(['ban', 'id']).format(subtotal));
-                        //console.log(ongkir);
+                        var ongkir_total=0;
+                        if(berat_total < 1000) {
+                            ongkir_total = cost;
+                            subtotal+=cost;
+                        } else {
+                            ongkir_total = cost*Math.round(berat_total/1000);
+                            subtotal+=ongkir_total;
+                        }
+                        $('#berat_total').val(berat_total);
+                        $('#ongkir_total').val(ongkir_total);
+                        $('#ongkirSummary').html("Rp"+new Intl.NumberFormat(['ban', 'id']).format(ongkir_total)+",00");
+                        $("#totalSummary").html("Rp"+new Intl.NumberFormat(['ban', 'id']).format(subtotal)+",00");
                     }
                     else {
                         var ongkir = $('input#ongkir').val("error, ongkir tidak tersedia");

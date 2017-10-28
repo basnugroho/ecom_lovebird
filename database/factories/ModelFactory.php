@@ -29,7 +29,6 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) {
         'name' => $faker->sentence(3),
         'image' => 'uploads/products/book.png',
         'description' => $faker->paragraph(4),
-        'stock' => rand(200, 500),
         'weight' => rand(100,250),
         'price' => $faker->numberBetween(1000, 15000),
         'category_id' => rand(2, 7),

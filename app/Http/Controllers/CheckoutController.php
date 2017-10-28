@@ -21,18 +21,18 @@ class CheckoutController extends Controller
         $this->middleware('auth');
     }
 
-    public function checkoutDelivery () {
+    public function checkoutDelivery (Request $request) {
         if(Cart::content()->count() <= 0) {
             Session::flash('info', 'Cart masih kosong!');
             return redirect()->back();
         }
-
         $currentRoute = Route::currentRouteName();
+        Session::forget('ongkir');
+        Session::forget('ongkir_total');
         return view('checkouts.checkout_delivery')->with('currentRoute', $currentRoute);
     }
 
     public function checkoutAddress (Request $request) {
-
         $currentRoute = Route::currentRouteName();
         $user = Auth::user();
         if($request->delivery_method == "jne") {
@@ -40,11 +40,12 @@ class CheckoutController extends Controller
             Session::flash('info', 'Anda memilih metode pengiriman '.$request->delivery_method);
             return view('checkouts.checkout_address')->with('currentRoute', $currentRoute)
             ->with('delivery_method', $request->delivery_method)
-            ->with('user', $user);
+            ->with('user', $user)
+            ->with('berat_total', Session::get('berat_total'));
         }
         $request->session()->put('delivery_method', $request->delivery_method);
         Session::flash('info', 'Anda memilih metode pengiriman '.$request->delivery_method);
-        return view('checkouts.chekcout_payment')->with('currentRoute', $currentRoute);
+        return view('checkouts.checkout_payment')->with('currentRoute', $currentRoute);
     }
 
     public function checkoutPayment (Request $request) {
@@ -52,8 +53,8 @@ class CheckoutController extends Controller
         $currentRoute = Route::currentRouteName();
         $user = Auth::user();
         $address = $user->address;
+
         if(isset($request->ongkir)) {
-            //dd($request->all());
             $address->street = $request->street;
             $address->city = $request->city;
             $address->zip = $request->zip;
@@ -62,37 +63,46 @@ class CheckoutController extends Controller
             $address->phone = $request->phone;
             $request->session()->put('ongkir', $request->ongkir);
             $request->session()->put('service', $request->service);
+            $request->session()->put('ongkir_total', $request->ongkir_total);
             $address->save();
-            Session::flash('info', 'info alamat telah disimpan!');
+            Session::flash('info', 'info alamat pengiriman telah disimpan!');
         }
-
-        return view('checkouts.chekcout_payment')->with('currentRoute', $currentRoute);
+        return view('checkouts.checkout_payment')->with('currentRoute', $currentRoute);
     }
+
     public function checkoutReview (Request $request) {
-        $request->session()->put('payment', $request->payment);
+        $request->session()->put('payment_method', $request->payment);
         Session::flash('info', 'anda memilih pembayaran '.$request->payment);
         $currentRoute = Route::currentRouteName();
         return view('checkouts.checkout_review')->with('currentRoute', $currentRoute);
     }
 
     public function checkoutPay (Request $request) {
-        $quantities = $request->get('qty');
-        $selling_prices = $request->get('selling_price');
         $product_id = $request->get('product_id');
-
+        $selling_prices = $request->get('selling_price');
+        $quantities = $request->get('qty');
         $service = Session::get('service');
-        $delivery_cost = Session::get('ongkir');
+        $delivery_cost = $request->ongkir;
+        $weight_total = $request->berat_total;
+        $delivery_cost_total = $request->ongkir_total;
+        $subtotal = $request->subtotal;
+        $total = $request->total;
 
+        //dd($request->all());
+        //catat pesanan
         $order = Order::create([
             'status' => 'not paid',
             'user_id' => $request->user_id,
             'delivery_method' => $request->delivery_method,
             'delivery_service' => $service,
             'delivery_cost' => $delivery_cost,
-            // 'payment_method' => $request->payment,
+            'weight_total' => $weight_total,
+            'delivery_cost_total' => $delivery_cost_total,
+            'payment_method' => Session::get('payment_method'),
             'total' => $request->total
         ]);
-
+        
+        //catat detail pesanan
         for($i = 0; $i < sizeOf($product_id); $i++) {
             $order_product = Order_Product::create([
                 'order_id' => $order->id,
@@ -102,26 +112,30 @@ class CheckoutController extends Controller
             ]);
         }
 
+        //kirim email
         $user = User::find($request->user_id);
-        $total = $request->total;
+        
         if ($ongkir = Session::has('ongkir')) {
-            $total = ($total) + strval(Session::get('ongkir')/1000);
-        } 
+            $total = ($total) + strval(Session::get('ongkir_total')/1000);//
+        }
 
         $data = [
             'order' => Order::find($order->id),
             'user' => $user,
             'total' => $total
         ];
-    
-        //send invoice
         Mail::send('emails.invoice', $data, function ($m) use ($user){
             $m->from('s6134117@student.ubaya.ac.id', 'BMW Master Surabaya');
 
             $m->to($user->email, $user->name)->subject('Tagihan Pesanan');
         });
+
+        //hapus session
         Cart::destroy();
-        Session::flash('info', 'silahkan cek email untuk petunjuk pembayaran');
+        Session::forget('ongkir');
+        Session::forget('ongkir_total');
+        Session::forget('berat_total');
+        Session::flash('info', 'Email telah terkirim, silahkan cek email untuk pembayaran');
         return redirect()->route('front');
     }
 }

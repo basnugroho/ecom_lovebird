@@ -64,7 +64,7 @@
 
             <div class="col-md-9 clearfix" id="customer-order">
 
-                <p class="lead">Pesanan #{{ $orders->id }} tercatat pada tanggal <strong>{{ $orders->created_at}}</strong> status saat ini <strong>{{ $orders->status }}</strong>.</p>
+                <p class="lead">Order #{{ $orders->id }} tercatat pada tanggal <strong>{{ $orders->created_at}}</strong> status saat ini <strong>{{ $orders->status }}</strong>.</p>
                 <p class="lead text-muted">Jika anda membutuhkan bantuan, silahkan <a href="{{ route('contact')}}">hubungi kami</a>, kami siap membantu anda.</p>
 
                 <div class="box">

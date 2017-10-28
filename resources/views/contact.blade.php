@@ -4,13 +4,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-                <h1>Contact</h1>
+                <h1>Kontak</h1>
             </div>
             <div class="col-md-5">
                 <ul class="breadcrumb">
-                    <li><a href="{{ route('front') }}">Home</a>
+                    <li><a href="{{ route('front') }}">Beranda</a>
                     </li>
-                    <li>Contact</li>
+                    <li>Kontak</li>
                 </ul>
             </div>
         </div>

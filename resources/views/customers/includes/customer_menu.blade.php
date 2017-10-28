@@ -11,10 +11,10 @@ _________________________________________________________ -->
 
             <ul class="nav nav-pills nav-stacked">
                 <li>
-                    <a href="{{ route('customer.orders')}}"><i class="fa fa-list"></i> Pesanan</a>
+                    <a href="{{ route('account')}}"><i class="fa fa-user"></i> Akun</a>
                 </li>
                 <li>
-                    <a href="{{ route('account')}}"><i class="fa fa-user"></i> Akun</a>
+                    <a href="{{ route('customer.orders')}}"><i class="fa fa-list"></i> Riwayat Order</a>
                 </li>
                 <!-- <li class="active">
                     <a href="customer-wishlist.html"><i class="fa fa-heart"></i> My wishlist</a>

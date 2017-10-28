@@ -4,14 +4,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-                <h1>My orders</h1>
+                <h1>Riwayat Pemesanan</h1>
             </div>
             <div class="col-md-5">
                 <ul class="breadcrumb">
 
-                    <li><a href="index.html">Home</a>
+                    <li><a href="index.html">Beranda</a>
                     </li>
-                    <li>My orders</li>
+                    <li>Riwayat Pemsanan</li>
                 </ul>
 
             </div>
@@ -38,11 +38,11 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Order</th>
-                                    <th>Date</th>
+                                    <th>Nomor Order</th>
+                                    <th>Tanggal</th>
                                     <th>Total</th>
                                     <th>Status</th>
-                                    <th>Action</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -59,7 +59,7 @@
                                         @elseif($order->status == 'ready to take')
                                         <span class="label label-info">siap diambil</span>
                                         @elseif($order->status == 'sending')
-                                        <span class="label label-info">siap diambil</span>
+                                        <span class="label label-info">sedang dikirim</span>
                                         @elseif($order->status == 'done')
                                         <span class="label label-success">selesai</span>
                                         @elseif($order->status == 'cancel')

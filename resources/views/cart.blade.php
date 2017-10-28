@@ -61,7 +61,9 @@
                                             <input type="hidden" name="row_id[]" value="{{ $product->rowId }}">
                                             <input name="qty[]" class="small" type="number" value="{{ $product->qty }}" class="form-control">
                                         </td>
-                                        <td>{{ $product->options->weight }}</td>
+                                        <td>
+                                            <input type="text" name="total_berat[]" id="" value="{{ $product->options->weight }}">
+                                        </td>
                                         <td>Rp{{ $product->price() }}</td>
                                         <td>Rp{{ $product->total() }}</td>
                                         <td>
@@ -72,8 +74,8 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th colspan="4">Total</th>
-                                        <th colspan="2">{{ Cart::total() }}</th>
+                                        <th colspan="5">Total</th>
+                                        <th colspan="2">Rp{{ Cart::total() }}</th>
                                     </tr>
                                 </tfoot>
                             </table>

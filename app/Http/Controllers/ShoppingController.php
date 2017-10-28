@@ -28,11 +28,11 @@ class ShoppingController extends Controller
             'qty' => 1,
             'options' => ['weight'=>$product->weight]
         ]);
-        static $beratTotal = 0;
-        foreach($cartItem as $product) {
-            $beratTotal += $product->options->weight;
+        $beratTotal = 0;
+        foreach (Cart::content() as $product) {
+            $beratTotal+=$product->options->weight * $product->qty;
         }
-        dd($berat_total);
+        $request->session()->put('berat_total', $beratTotal);
         Cart::associate($cartItem->rowId, 'App\Product');
         Session::flash('success', 'produk telah ditambahkan dalam cart');
         return redirect()->back();
@@ -41,12 +41,17 @@ class ShoppingController extends Controller
     }
 
     public function cartUpdate (Request $request) {
-        dd($request->all());
         $rowId = $request->row_id;
         $qty = $request->qty;
         for($i = 0; $i < count($rowId); $i++) {
             Cart::update($rowId[$i], $qty[$i]);
         }
+        //update berat
+        $beratTotal = 0;
+        foreach (Cart::content() as $product) {
+            $beratTotal+= ($product->options->weight * $product->qty);
+        }
+        Session::put('berat_total', $beratTotal);
         Session::flash('success', 'Informasi dalam cart telah diperbarui');
         return redirect()->back();
     }

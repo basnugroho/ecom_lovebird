@@ -9,7 +9,7 @@
             <div class="col-md-5">
                 <ul class="breadcrumb">
 
-                    <li><a href="index.html">Home</a>
+                    <li><a href="index.html">Beranda</a>
                     </li>
                     <li>Akun</li>
                 </ul>

@@ -173,7 +173,7 @@
       <table>
         <thead>
           <tr>
-            <th class="service">Nama Produk</th>
+            <th class="service">Produk</th>
             <th class="desc"></th>
             <th>Harga Jual</th>
             <th>Jumlah</th>
@@ -194,13 +194,20 @@
             <td colspan="4">Subtotal</td>
             <td class="total">Rp{{ Cart::total() }}</td>
           </tr>
+
           <tr>
-            <td colspan="4">Ongkos Kirim</td>
-            <td class="total">{{ Session::has('ongkir') ? 'Rp'.number_format(strval(Session::get('ongkir')), 2, ',', '.') : 'diambil ditempat' }}</td>
+            <td colspan="4">Berat Total</td>
+            <td class="total">{{ strval(Session::get('berat_total'))/1000 }}Kg</td>
           </tr>
+          @if(Session::has('ongkir'))
+          <tr>
+            <td colspan="4">Ongkos Kirim Total</td>
+            <td class="total">Rp{{ Session::has('ongkir_total') ? number_format(strval(Session::get('ongkir_total')), 2, ',', '.') : 'diambil ditempat' }}</td>
+          </tr>
+          @endif
           <tr>
             <td colspan="4" class="grand total">Total</td>
-            <td class="grand total">Rp{{ number_format(strval($total*1000), 2, ',', '.') }}</td>
+            <td class="grand total">Rp{{ number_format(strval($total), 2, ',', '.') }}</td>
           </tr>
         </tbody>
       </table>

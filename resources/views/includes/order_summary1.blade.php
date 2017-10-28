@@ -1,9 +1,9 @@
 
     <div class="box" id="order-summary">
         <div class="box-header">
-            <h3>Detail Pembayaran</h3>
+            <h3>Alamat Kirim/Pengambilan</h3>
         </div>
-        <p class="text-muted">Ongkos kirim dan tambahan biaya dihitung berdasarkan lokasi pengiriman</p>
+        <p class="text-muted">Ongkos kirim dan tambahan biaya dihitung berdasarkan pengisian yang anda pilih.</p>
 
         <div class="table-responsive">
             <table class="table">
@@ -23,6 +23,7 @@
                         <td>Total Ongkos kirim</td>
                         <th id="ongkirSummary">Rp{{ Session::has('ongkir_total') ? number_format(Session::get('ongkir_total'),2,',', '.'): '0,00' }}</th>
                     </tr>
+
                     <tr>
                         <td><b>Total</b></td>
                         <th id="totalSummary">Rp{{ number_format(strval(1000*Cart::total()) +  strval(Session::get('ongkir_total')),2,',','.') }}</th>
