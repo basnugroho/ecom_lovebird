@@ -13,33 +13,7 @@
 */
 
 
-Route::get('/test', function () {
-    $curl = curl_init();
-    //$id = $_GET['query'];
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => "https://api.rajaongkir.com/starter/province?id=",
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_ENCODING => "",
-      CURLOPT_MAXREDIRS => 10,
-      CURLOPT_TIMEOUT => 30,
-      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      CURLOPT_CUSTOMREQUEST => "GET",
-      CURLOPT_HTTPHEADER => array(
-        "key: a3b15c671a13e8bd8a1d98a3067c9419"
-      ),
-    ));
-    
-    $response = curl_exec($curl);
-    $err = curl_error($curl);
-    curl_close($curl);
-    
-    if ($err) {
-      echo "cURL Error #:" . $err;
-    } else {
-        return $response;
-    }
-});
-
+//Shopping
 Route::get('/', [
     'uses' => 'FrontEndController@index',
     'as' => 'front'
@@ -65,7 +39,7 @@ Route::get('/cart/delete', [
     'as' => 'cart.delete'
 ]);
 
-
+//Chekcout
 Route::get('/checkout/delivery', [
     'uses' => 'CheckoutController@checkoutDelivery',
     'as' => 'checkout.delivery'
@@ -87,7 +61,7 @@ Route::post('/checkout/pay', [
     'as' => 'checkout.pay'
 ]);
 
-
+//Find Product By Category
 Route::get('/category/{c_id}/{p_id}', [
     'uses' => 'FrontEndController@detail',
     'as' => 'front.detail'
@@ -100,23 +74,34 @@ Route::get('/category/{id}', [//by category
     'as' => 'front.category'
 ]);
 
+//User Account
 Route::get('/account', [
     'uses' => 'UsersController@account',
     'as' => 'account'
 ]);
 
+Route::post('/account/update', [
+    'uses' => 'UsersController@update',
+    'as' => 'account.update'
+]);
+
+
+//Front Pages
 Route::get('/about', [
     'uses' => 'FrontEndController@about',
     'as' => 'about'
 ]);
 
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+Auth::routes();
+
+//Admin
 Route::get('/admin', function () {
     return view('auth.login');
 });
+
 Route::get('/admin/profile', [
     'uses' => 'Admin\\AdminController@profile',
     'as' => 'admin.profile'
@@ -127,6 +112,8 @@ Route::resource('admin/products', 'Admin\\ProductsController');
 Route::resource('admin/customers', 'Admin\\CustomersController');
 Route::resource('admin/orders', 'Admin\\OrdersController');
 
+
+//Customer login dll
 Route::get('/customer/login', [
     'uses' => 'UsersController@login',
     'as' => 'customer.login'
@@ -149,7 +136,7 @@ Route::get('/customer/order/{id}/details/', [
     'as' => 'order.details'
 ]);
 
-
+//API
 Route::get('/provinces', [
     'uses' => 'OngkirsController@get_provinces',
     'as' => 'ongkir.provinces'
@@ -164,7 +151,7 @@ Route::get('/services', [
     'as' => 'ongkir.services'
 ]);
 
-
+//email
 Route::get('/email', [
     'uses' => 'MailsController@sendInvoice',
     'as' => 'email.invoice'

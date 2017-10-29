@@ -30,20 +30,30 @@
                             <table class="table table-borderless">
                                 <thead>
                                     <tr>
-                                        <th>ID</th><th>User Id</th><th>Name</th><th>Delivery Method</th><th>Actions</th>
+                                        <th>ID</th>
+                                        <th>Status</th>
+                                        <th>User Id</th>
+                                        <th>Delivery Method</th>
+                                        <th>Total</th>
+                                        <th>Payment Method</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($orders as $item)
+                                @foreach($orders as $order)
                                     <tr>
-                                        <td>{{ $item->id }}</td>
-                                        <td>{{ $item->user_id }}</td><td>{{ $item->name }}</td><td>{{ $item->delivery_method }}</td>
+                                        <td>{{ $order->id }}</td>
+                                        <td>{{ $order->status }}</td>
+                                        <td>{{ $order->user_id }}</td>
+                                        <td>{{ $order->delivery_method }}</td>
+                                        <td>{{ $order->total }}</td>
+                                        <td>{{ $order->payment_method }}</td>
                                         <td>
-                                            <a href="{{ url('/admin/orders/' . $item->id) }}" title="View order"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/admin/orders/' . $item->id . '/edit') }}" title="Edit order"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            <a href="{{ url('/admin/orders/' . $order->id) }}" title="View order"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Detail</button></a>
+                                            <a href="{{ url('/admin/orders/' . $order->id . '/edit') }}" title="Edit order"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
                                             {!! Form::open([
                                                 'method'=>'DELETE',
-                                                'url' => ['/admin/orders', $item->id],
+                                                'url' => ['/admin/orders', $order->id],
                                                 'style' => 'display:inline'
                                             ]) !!}
                                                 {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(

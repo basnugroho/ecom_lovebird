@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Address extends Model
 {
-    protected $fillable = ['street', 'city', 'zip', 'province', 'country', 'phone', 'user_id'];
+    protected $fillable = ['street', 'city', 'city_type', 'zip', 'province', 'country', 'phone', 'user_id'];
     
     public function user () {
         return $this->belongsTo('App\User');

@@ -17,6 +17,7 @@ class CreateAddressesTable extends Migration
             $table->increments('id');
             $table->string('street')->nullable();
             $table->string('city')->nullable();
+            $table->string('city_type')->nullable();
             $table->integer('zip')->nullable();
             $table->string('province')->nullable();
             $table->string('country')->nullable()->default('Indonesia');

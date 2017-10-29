@@ -12,9 +12,9 @@ class Order_Product extends Model
     ];
 
     public function order () {
-        $this->belongsTo('App\Order');
+      return $this->belongsTo('App\Order');
     }
     public function product () {
-        $this->belongsTo('App\Product');
+       return $this->belongsTo('App\Product');
     }
 }

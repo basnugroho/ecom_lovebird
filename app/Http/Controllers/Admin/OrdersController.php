@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Product;
 use App\Order;
+use App\Order_Product;
 use Illuminate\Http\Request;
 use Session;
 
@@ -69,8 +70,9 @@ class OrdersController extends Controller
     public function show($id)
     {
         $order = Order::findOrFail($id);
-
-        return view('admin.orders.show', compact('order'));
+        $details = $order->details;
+        $address = $order->user->address;
+        return view('admin.orders.show', compact('order','details', 'address'));
     }
 
     /**
@@ -83,8 +85,11 @@ class OrdersController extends Controller
     public function edit($id)
     {
         $order = Order::findOrFail($id);
-
-        return view('admin.orders.edit', compact('order'));
+        $order_details = Order_Product::findOrFail($id);
+        $status = $order->status;
+        $arrstatus=array('not paid','ready to take','sending','done');
+        //dd($status);
+        return view('admin.orders.edit', compact('order', 'status','arrstatus'));
     }
 
     /**
@@ -97,14 +102,11 @@ class OrdersController extends Controller
      */
     public function update($id, Request $request)
     {
-        
         $requestData = $request->all();
-        
+        //dd($requestData);
         $order = Order::findOrFail($id);
         $order->update($requestData);
-
         Session::flash('flash_message', 'Order updated!');
-
         return redirect('admin/orders');
     }
 

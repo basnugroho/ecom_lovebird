@@ -96,8 +96,8 @@
                                     <th colspan="3"></th>
                                     <th colspan="1">Total</th>
                                     <th colspan="1">Rp{{ number_format(strval(1000*Cart::total()) +  strval(Session::get('ongkir_total')),2,',','.') }}</th>
-                                    <input type="hidden" name="berat_total" value="{{ strval(Session::get('berat_total'))/1000 }}">
-                                    <input type="hidden" name="ongkir_total" value="{{ strval(Session::get('ongkir_total')) }}">
+                                    <input type="hidden" name="berat_total" value="{{ Session::has('berat_total') ? (strval(Session::get('berat_total'))/1000) : '0' }}">
+                                    <input type="hidden" name="ongkir_total" value="{{ Session::has('ongkir_total') ? Session::get('ongkir_total') : '0' }}">
                                     <input type="hidden" name="total" value="{{ strval(1000*Cart::total()) +  strval(Session::get('ongkir_total')) }}">
                                 </tr>
                             </tfoot>

@@ -77,12 +77,13 @@
                         <h3 class="text-uppercase">Data Diri</h3>
                     </div>
 
-                    <form>
+                    <form method="post" action="{{ route('account.update') }}">
+                        {{ csrf_field() }}
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="firstname">Nama</label>
-                                    <input type="text" class="form-control" name="firstname" value="{{ $user->name }}">
+                                    <input type="text" class="form-control" name="name" value="{{ $user->name }}">
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -117,7 +118,6 @@
 
                             <div class="col-sm-12 text-center">
                                 <button type="submit" class="btn btn-template-main"><i class="fa fa-save"></i> Simpan</button>
-
                             </div>
 
                         </div>
