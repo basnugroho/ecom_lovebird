@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Cart;
@@ -10,34 +8,29 @@ use Session;
 
 class ShoppingController extends Controller
 {
-    
     public function cart () {
-        $currentRoute = Route::currentRouteName();
+        $currentRoute = Route::currentRouteName(); //lokasi halaman
         return view ('cart')->with('currentRoute', $currentRoute);
-        //->with('berat_total', $beratTotal);
     }
 
     public function addToCart (Request $request) {
-        $product = Product::find($request->product_id);
-        //dd($product);
-        $productPrice= $product->price;
-        $cartItem = Cart::add([
+        $product = Product::find($request->product_id);//produk terpilih
+        $productPrice= $product->price;//harga produk
+        $cartItem = Cart::add([ //tambah produk ke troli
             'id' => $product->id,
             'name' => $product->name,
             'price' => $productPrice,
             'qty' => 1,
             'options' => ['weight'=>$product->weight]
         ]);
-        $beratTotal = 0;
+        $beratTotal = 0; //berat total
         foreach (Cart::content() as $product) {
             $beratTotal+=$product->options->weight * $product->qty;
         }
         $request->session()->put('berat_total', $beratTotal);
-        Cart::associate($cartItem->rowId, 'App\Product');
+        Cart::associate($cartItem->rowId, 'App\Product'); //asosiasi produk
         Session::flash('success', 'produk telah ditambahkan dalam cart');
         return redirect()->back();
-        // $currentRoute = Route::currentRouteName();
-        // return view ('cart')->with('currentRoute', $currentRoute);
     }
 
     public function cartUpdate (Request $request) {
@@ -46,9 +39,8 @@ class ShoppingController extends Controller
         for($i = 0; $i < count($rowId); $i++) {
             Cart::update($rowId[$i], $qty[$i]);
         }
-        //update berat
         $beratTotal = 0;
-        foreach (Cart::content() as $product) {
+        foreach (Cart::content() as $product) { //update total berat
             $beratTotal+= ($product->options->weight * $product->qty);
         }
         Session::put('berat_total', $beratTotal);
@@ -56,14 +48,10 @@ class ShoppingController extends Controller
         return redirect()->back();
     }
 
-    public function cartDelete () {
+    public function cartDelete () { //hapus 
         $rowId = request()->row_id;
         Cart::remove($rowId);
         Session::flash('success', 'Produk dalam cart berhasil dihapus');
         return redirect()->back();
-    }
-
-    public function orders () {
-        return view ('orders');
     }
 }

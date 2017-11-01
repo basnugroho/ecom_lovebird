@@ -12,7 +12,6 @@
 |
 */
 
-
 //Shopping
 Route::get('/', [
     'uses' => 'FrontEndController@index',

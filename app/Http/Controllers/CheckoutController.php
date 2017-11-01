@@ -56,7 +56,6 @@ class CheckoutController extends Controller
         $city_type = $this->getCity($request->state, $request->city)['rajaongkir']['results']['type'];
         $city = $this->getCity($request->state, $request->city)['rajaongkir']['results']['city_name'];
         $service = $this->getService($request->city)['rajaongkir']['results'][0]['costs'][$request->service]['service'];
-        //dd($service);
         if(isset($request->ongkir)) {
             $address->street = $request->street;
             $address->city_type = $city_type;
@@ -93,7 +92,6 @@ class CheckoutController extends Controller
         $berat_total = $request->berat_total;
         $total = $request->total;
 
-        //dd($request->all());
         //catat pesanan;
         if(Session::has('ongkir')) {
             $order = Order::create([

@@ -1,9 +1,6 @@
 <?php
-
 namespace App\Http\Middleware;
-
 use Closure;
-
 use Auth;
 use Session;
 
@@ -22,8 +19,7 @@ class Admin
         //dd($user);
         if(!$user->admin)
         {
-            //Session::flash('info', 'You dont have permission to acces that page');
-            return redirect()->route('front');
+            return redirect()->route('front');//arahkan ke beranda
         }
         return $next($request);
     }

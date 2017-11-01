@@ -10,20 +10,17 @@
                     <a href="{{ route('admin.profile') }}">
                         Dashboard
                     </a>
-                    <a href="{{ route('customers.index') }}">
-                        Pelanggan
+                    <a href="{{ route('categories.index') }}">
+                        Kategori Produk
                     </a>
                     <a href="{{ route('products.index') }}">
                         Produk
                     </a>
-                    <a href="{{ route('categories.index') }}">
-                        Kategori Produk
+                    <a href="{{ route('customers.index') }}">
+                        Pelanggan
                     </a>
                     <a href="{{ route('orders.index') }}">
                         Pesanan
-                    </a>
-                    <a href="">
-                        Pengaturan
                     </a>
                 </li>
             </ul>

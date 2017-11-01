@@ -37,7 +37,6 @@
                                     <tr><th> Nama </th><td> {{ $product->name }} </td></tr>
                                     <tr><th> Kategori </th><td> {{ $product->category->name }} </td></tr>
                                     <tr><th> Harga </th><td> {{ $product->price }} </td></tr>
-                                    <tr><th> Persediaan </th><td> {{ $product->stock }} </td></tr>
                                     <tr><th> Berat (gram) </th><td> {{ $product->weight }} </td></tr>
                                     <tr><th> Deskripsi </th><td> {{ $product->description }} </td></tr>
                                 </tbody>

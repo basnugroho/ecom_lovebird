@@ -77,7 +77,7 @@ _________________________________________________________ -->
 
                             </div> -->
 
-                            <p class="price">Rp{{ number_format($product->price, 0, ",", ".") }}</p>
+                            <p class="price">Rp{{ number_format($product->price, 2, ",", ".") }}</p>
 
                             <p class="text-center">
                                 <!-- <button type="submit" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i> Add to cart</button>
@@ -86,14 +86,14 @@ _________________________________________________________ -->
                                 <form action="{{ route('cart.add') }}" method="post">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                    <button class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                    <button class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Tambah ke Troli</button>
                                 </form>
                             </p>
 
                         
                     </div>
 
-                    <div class="row" id="thumbs">
+                    <!-- <div class="row" id="thumbs">
                         <div class="col-xs-4">
                             <a href="img/detailbig1.jpg" class="thumb">
                                 <img src="{{ asset('universal/img/detailsquare.jpg') }}" alt="" class="img-responsive">
@@ -109,7 +109,7 @@ _________________________________________________________ -->
                                 <img src="{{ asset('universal/img/detailsquare3.jpg') }}" alt="" class="img-responsive">
                             </a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
             </div>
@@ -137,7 +137,7 @@ _________________________________________________________ -->
             </div>
 
             <div class="box social" id="product-social">
-                <h4>Show it to your friends</h4>
+                <h4>Bagikan kepada teman</h4>
                 <p>
                     <a href="#" class="external facebook" data-animate-hover="pulse"><i class="fa fa-facebook"></i></a>
                     <a href="#" class="external gplus" data-animate-hover="pulse"><i class="fa fa-google-plus"></i></a>
@@ -189,7 +189,7 @@ _________________________________________________________ -->
             <div class="panel panel-default sidebar-menu">
 
                 <div class="panel-heading">
-                    <h3 class="panel-title">Categories</h3>
+                    <h3 class="panel-title">Kategori Produk</h3>
                 </div>
 
                 <div class="panel-body">
@@ -299,11 +299,11 @@ _________________________________________________________ -->
 
             <!-- *** MENUS AND FILTERS END *** -->
 
-            <div class="banner">
+            <!-- <div class="banner">
                 <a href="shop-category.html">
                     <img src="{{ asset('universal/img/banner.jpg') }}" alt="sales 2014" class="img-responsive">
                 </a>
-            </div>
+            </div> -->
             <!-- /.banner -->
         </div>
         <!-- /.col-md-3 -->

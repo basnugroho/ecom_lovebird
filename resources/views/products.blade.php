@@ -33,7 +33,7 @@ _________________________________________________________ -->
                 <div class="panel panel-default sidebar-menu">
 
                     <div class="panel-heading">
-                        <h3 class="panel-title">Categories</h3>
+                        <h3 class="panel-title">Kategori Produk</h3>
                     </div>
 
                     <div class="panel-body">
@@ -56,11 +56,11 @@ _________________________________________________________ -->
 
                 <!-- *** MENUS AND FILTERS END *** -->
 
-                <div class="banner">
+                <!-- <div class="banner">
                     <a href="shop-category.html">
                         <img src="{{ asset('universal/img/banner.jpg') }}" alt="sales 2014" class="img-responsive">
                     </a>
-                </div>
+                </div> -->
                 <!-- /.banner -->
 
             </div>
@@ -93,7 +93,7 @@ _________________________________________________________ -->
                                     <form action="{{ route('cart.add') }}" method="post">
                                         {{ csrf_field() }}
                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                        <button class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                        <button class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Tambah ke Troli</button>
                                     </form>
                                 </p>
                             </div>
@@ -106,7 +106,7 @@ _________________________________________________________ -->
                 </div>
                 <!-- /.products -->
 
-                <div class="row">
+                <!-- <div class="row">
 
                     <div class="col-md-12 banner">
                         <a href="#">
@@ -114,9 +114,9 @@ _________________________________________________________ -->
                         </a>
                     </div>
 
-                </div>
+                </div> -->
 
-
+<!-- 
                 <div class="pages">
 
                     <p class="loadMore">
@@ -139,7 +139,7 @@ _________________________________________________________ -->
                         <li><a href="#">&raquo;</a>
                         </li>
                     </ul>
-                </div>
+                </div> -->
 
 
             </div>

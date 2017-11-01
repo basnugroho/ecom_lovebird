@@ -50,19 +50,19 @@
  
                                     <tr>
                                         <td>
-                                            <a href="#">
+                                            <a href="{{ route('front.detail', ['c_id' => $product->model->category->id, 'p_id' => $product->model->id ]) }}">
                                                 <img src="{{ asset($product->model->image) }}" alt="{{ $product->rowId }}">
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="#">{{ $product->name }}</a>
+                                            <a href="{{ route('front.detail', ['c_id' => $product->model->category->id, 'p_id' => $product->model->id ]) }}">{{ $product->name }}</a>
                                         </td>
                                         <td>
                                             <input type="hidden" name="row_id[]" value="{{ $product->rowId }}">
                                             <input name="qty[]" class="small" type="number" value="{{ $product->qty }}" class="form-control">
                                         </td>
                                         <td>
-                                            <input type="text" name="total_berat[]" id="" value="{{ $product->options->weight }}">
+                                            <input type="text" name="total_berat[]" id="" value="{{ $product->options->weight }}" readonly>
                                         </td>
                                         <td>Rp{{ $product->price() }}</td>
                                         <td>Rp{{ $product->total() }}</td>

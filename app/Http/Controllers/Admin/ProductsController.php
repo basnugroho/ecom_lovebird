@@ -1,10 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
@@ -61,7 +59,6 @@ class ProductsController extends Controller
 			'name' => 'required',
             'price' => 'required',
             'image' => 'required|image',
-            'stock' => 'required',
             'weight' => 'required',
 			'category_id' => 'required',
 			'description' => 'required'
@@ -71,15 +68,12 @@ class ProductsController extends Controller
         $product_image = $request->image;
         $product_image_new_name = time()."_".$product_image->getClientOriginalName();
         $product_image->move('uploads/products/', $product_image_new_name);
-        
-        //dd($request->all());
 
         //save all
         Product::create([
             'name' => $request->name,
             'price' => $request->price,
             'image' => 'uploads/products/'.$product_image_new_name,
-            'stock' => $request->stock,
             'weight' => $request->weight,
             'category_id' => $request->category_id,
             'description' => $request->description
@@ -147,7 +141,6 @@ class ProductsController extends Controller
 
         $product->name = $request->name;
         $product->price = $request->price;
-        $product->stock = $request->stock;
         $product->weight = $request->weight;
         $product->category_id = $request->category_id;
         $product->description = $request->description;

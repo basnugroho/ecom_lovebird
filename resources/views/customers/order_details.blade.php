@@ -79,33 +79,34 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($orders->products as $order)
+                                @foreach($orders->details as $orderD)
                                 <tr>
                                     <td>
-                                        <a href="#">
-                                            <img src="img/detailsquare.jpg" alt="White Blouse Armani">
+                                        <a href="{{ route('front.detail', ['c_id' => $orderD->product->category->id, 'p_id' => $orderD->product->id ]) }}">
+                                            <img src="{{ asset($orderD->product->image) }}" alt="{{ $orderD->product->id }}">
                                         </a>
                                     </td>
-                                    <td><a href="#"></a>
+                                    <td>
+                                    <a href="{{ route('front.detail', ['c_id' => $orderD->product->category->id, 'p_id' => $orderD->product->id ]) }}">{{ $orderD->product->name }}</a>
                                     </td>
-                                    <td>{{ $order->pivot->quantity}}</td>
-                                    <td>{{ $order->pivot->selling_price}}</td>
-                                    <td>{{ $order->pivot->selling_price}}</td>
+                                    <td>{{ $orderD->quantity}}</td>
+                                    <td>Rp{{ number_format($orderD->selling_price,2, ',', '.')}}</td>
+                                    <td>Rp{{ number_format ( strval($orderD->selling_price) * strval($orderD->quantity)  ,2, ',', '.') }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <th colspan="4" class="text-right">Subtotal</th>
-                                    <th>{{ $orders->total * 1000 }}</th>
+                                    <th>Rp{{ number_format($orders->total, 2,',', '.') }}</th>
                                 </tr>
                                 <tr>
-                                    <th colspan="4" class="text-right">Ongkos Kirim</th>
-                                    <th>{{ $orders->delivery_cost }}</th>
+                                    <th colspan="4" class="text-right">Ongkos Kirim Total</th>
+                                    <th>Rp{{ number_format($orders->delivery_cost_total,'2', ',', '.') }}</th>
                                 </tr>
                                 <tr>
                                     <th colspan="4" class="text-right">Total</th>
-                                    <th><?php $a = $orders->total * 1000 + $orders->delivery_cost; echo $a;?></th>
+                                    <th><?php $a = $orders->total + $orders->delivery_cost_total; echo "Rp".number_format($a,2,',','.');?></th>
                                 </tr>
                             </tfoot>
                         </table>

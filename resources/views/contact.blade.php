@@ -87,6 +87,7 @@
 
         </section>
 
+<!--
         <section>
 
             <div class="row text-center">
@@ -135,16 +136,18 @@
                                 <button type="submit" class="btn btn-template-main"><i class="fa fa-envelope-o"></i> Kirim Pesan</button>
                             </div>
                         </div>
-                        <!-- /.row -->
+                        
                     </form>
 
 
 
                 </div>
             </div>
-            <!-- /.row -->
+            
 
         </section>
+        -->
+        
 
 
     </div>

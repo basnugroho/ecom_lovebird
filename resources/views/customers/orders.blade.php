@@ -50,7 +50,7 @@
                                 <tr>
                                     <th># {{ $order->id }}</th>
                                     <td>{{ $order->created_at }}</td>
-                                    <td>{{ $order->total }}</td>
+                                    <td>Rp{{ number_format($order->total, 2, ',', '.') }}</td>
                                     <td>
                                         @if($order->status == 'not paid')
                                         <span class="label label-warning">belum dibayar</span>
@@ -68,7 +68,7 @@
                                         <span class="label label-warning">kasus khusus</span>
                                         @endif
                                     </td>
-                                    <td><a href="{{ route('order.details', ['id' => $order->id ]) }}" class="btn btn-template-main btn-sm">View</a>
+                                    <td><a href="{{ route('order.details', ['id' => $order->id ]) }}" class="btn btn-template-main btn-sm">Lihat Detail</a>
                                     </td>
                                 </tr>
                                 @endforeach

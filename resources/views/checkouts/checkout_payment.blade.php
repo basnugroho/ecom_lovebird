@@ -4,13 +4,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-                <h1>Checkout - Payment method</h1>
+                <h1>Checkout - Metode Pembayaran</h1>
             </div>
             <div class="col-md-5">
                 <ul class="breadcrumb">
                     <li><a href="index.html">Home</a>
                     </li>
-                    <li>Checkout - Payment method</li>
+                    <li>Checkout - Metode Pembayaran</li>
                 </ul>
 
             </div>

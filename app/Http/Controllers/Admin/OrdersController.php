@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Product;
@@ -31,34 +30,6 @@ class OrdersController extends Controller
         return view('admin.orders.index', compact('orders'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('admin.orders.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function store(Request $request)
-    {
-        
-        $requestData = $request->all();
-        
-        Order::create($requestData);
-
-        Session::flash('flash_message', 'Order added!');
-
-        return redirect('admin/orders');
-    }
 
     /**
      * Display the specified resource.

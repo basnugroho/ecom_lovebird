@@ -4,14 +4,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-                <h1>Checkout - Order review</h1>
+                <h1>Checkout - Review Pesanan</h1>
             </div>
             <div class="col-md-5">
                 <ul class="breadcrumb">
 
                     <li><a href="index.html">Home</a>
                     </li>
-                    <li>Checkout - Order review</li>
+                    <li>Checkout - Review Pesanan</li>
                 </ul>
 
             </div>

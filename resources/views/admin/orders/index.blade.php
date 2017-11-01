@@ -7,10 +7,10 @@
 
             <div class="col-md-9">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Orders</div>
+                    <div class="panel-heading">Pesanan</div>
                     <div class="panel-body">
                         <a href="{{ url('/admin/orders/create') }}" class="btn btn-success btn-sm" title="Add New order">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                            <i class="fa fa-plus" aria-hidden="true"></i> ______
                         </a>
 
                         {!! Form::open(['method' => 'GET', 'url' => '/admin/orders', 'class' => 'navbar-form navbar-right', 'role' => 'search'])  !!}

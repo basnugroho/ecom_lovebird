@@ -30,7 +30,7 @@
                             <table class="table table-borderless">
                                 <thead>
                                     <tr>
-                                        <th>ID</th><th>Nama</th><th>Gambar</th><th>Harga</th><th>Stok</th><th>Aksi</th>
+                                        <th>ID</th><th>Nama</th><th>Gambar</th><th>Harga</th><th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -40,7 +40,6 @@
                                         <td>{{ $item->name }}</td>
                                         <td><img width="50" src="{{ asset($item->image) }}" alt="{{ $item->name }}"></td>
                                         <td>{{ $item->price }}</td>
-                                        <td>{{ $item->stock }}</td>
                                         <td>
                                             <a href="{{ url('/admin/products/' . $item->id) }}" title="View Product"><button class="btn btn-info btn-xs"><i class="fa fa-eye" aria-hidden="true"></i> Detail</button></a>
                                             <a href="{{ url('/admin/products/' . $item->id . '/edit') }}" title="Edit Product"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

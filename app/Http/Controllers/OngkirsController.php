@@ -1,17 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
-use App\Libraries\REST_Ongkir;
 
 class OngkirsController extends Controller
 {
-
     function get_provinces (Request $request) {
         $curl = curl_init();
-        //$id = $_GET['query'];
         curl_setopt_array($curl, array(
           CURLOPT_URL => "https://api.rajaongkir.com/starter/province?id=",
           CURLOPT_RETURNTRANSFER => true,
@@ -41,7 +35,6 @@ class OngkirsController extends Controller
 
         if(isset($_GET['city_id'])) {
             $city_id = $_GET['city_id'];
-
             $curl = curl_init();
             
             curl_setopt_array($curl, array(
@@ -132,5 +125,4 @@ class OngkirsController extends Controller
             
         }
     }
-
 }
