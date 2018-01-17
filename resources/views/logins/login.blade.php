@@ -4,13 +4,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-                <h1>New account / Sign in</h1>
+                <h1>Login / Register</h1>
             </div>
             <div class="col-md-5">
                 <ul class="breadcrumb">
-                    <li><a href="index.html">Home</a>
+                    <li><a href="index.html">Beranda</a>
                     </li>
-                    <li>New account / Sign in</li>
+                    <li>Login / Register</li>
                 </ul>
 
             </div>
@@ -27,16 +27,15 @@
                 <div class="box">
                     <h2 class="text-uppercase">Login</h2>
 
-                    <p class="lead">Already our customer?</p>
-                    <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-                        ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                    <p class="lead">Sudah pernah register?</p>
+                    <p class="text-muted">Silahkan login dengan mengisi email dan password anda dibawah ini.</p>
 
                     <hr>
 
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <label for="email" class="col-md-4 control-label">Alamat E-Mail</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
@@ -63,7 +62,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
                                     <label>
@@ -71,7 +70,7 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
@@ -79,9 +78,9 @@
                                     Login
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
+                                <!-- <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    Lupa Password?
+                                </a> -->
                             </div>
                         </div>
                     </form>
@@ -92,11 +91,11 @@
             <!-- register -->
             <div class="col-md-6">
                 <div class="box">
-                    <h2 class="text-uppercase">New account</h2>
+                    <h2 class="text-uppercase">Buat Akun Baru</h2>
 
-                    <p class="lead">Not our registered customer yet?</p>
-                    <p>With registration with us new world of fashion, fantastic discounts and much more opens to you! The whole process will not take you more than a minute!</p>
-                    <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
+                    <p class="lead">Belum pernah registrasi?</p>
+                    <p>Silahkan lakukan registrasi dengan mengisi kolom dibawah ini.</p>
+                    <p class="text-muted">Jika anda membtuhkan bantuan, silahkan <a href="{{ route('contact') }}">hubungi kami</a>, kami dengan senang hati membantu anda.</p>
 
                     <hr>
 
@@ -104,7 +103,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <label for="name" class="col-md-4 control-label">Nama</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -118,7 +117,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <label for="email" class="col-md-4 control-label">Alamat E-Mail</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>

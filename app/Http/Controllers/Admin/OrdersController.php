@@ -56,7 +56,7 @@ class OrdersController extends Controller
     public function edit($id)
     {
         $order = Order::findOrFail($id);
-        $order_details = Order_Product::findOrFail($id);
+        //$order_details = Order_Product::findOrFail($id);
         $status = $order->status;
         $arrstatus=array('not paid','ready to take','sending','done');
         //dd($status);

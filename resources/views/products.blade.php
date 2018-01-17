@@ -80,13 +80,13 @@ _________________________________________________________ -->
                     <div class="col-md-4 col-sm-6">
                         <div class="product">
                             <div class="image">
-                                <a href="shop-detail.html">
+                                <a href="{{ route('front.detail', ['c_id' => $category->id, 'p_id' => $product->id ]) }}">
                                     <img src="{{ asset($product->image) }}" alt="" class="img-responsive image1">
                                 </a>
                             </div>
                             <!-- /.image -->
                             <div class="text">
-                                <h3><a href="shop-detail.html">{{ $product->name }}</a></h3>
+                                <h3><a href="{{ route('front.detail', ['c_id' => $category->id, 'p_id' => $product->id ]) }}">{{ $product->name }}</a></h3>
                                 <p class="price">Rp{{ number_format($product->price, 2, ",", ".") }}</p>
                                 <p class="text">
                                     <a href="{{ route('front.detail', ['c_id' => $category->id, 'p_id' => $product->id ]) }}" class="btn btn-default">Detail</a>

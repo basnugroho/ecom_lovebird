@@ -50,6 +50,7 @@ class ShoppingController extends Controller
 
     public function cartDelete () { //hapus 
         $rowId = request()->row_id;
+
         Cart::remove($rowId);
         Session::flash('success', 'Produk dalam cart berhasil dihapus');
         return redirect()->back();

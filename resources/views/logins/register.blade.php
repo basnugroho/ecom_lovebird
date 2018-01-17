@@ -4,13 +4,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-                <h1>New account / Sign in</h1>
+                <h1>Register</h1>
             </div>
             <div class="col-md-5">
                 <ul class="breadcrumb">
-                    <li><a href="index.html">Home</a>
+                    <li><a href="index.html">Beranda</a>
                     </li>
-                    <li>New account / Sign in</li>
+                    <li>Register</li>
                 </ul>
 
             </div>
@@ -29,7 +29,7 @@
                 {{ csrf_field() }}
 
                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                        <label for="name" class="col-md-4 control-label">Name</label>
+                        <label for="name" class="col-md-4 control-label">Nama</label>
 
                         <div class="col-md-6">
                             <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                        <label for="email" class="col-md-4 control-label">Alamat E-Mail</label>
 
                         <div class="col-md-6">
                             <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -71,7 +71,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                        <label for="password-confirm" class="col-md-4 control-label">Ulangi Password</label>
 
                         <div class="col-md-6">
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
